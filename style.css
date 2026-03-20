@@ -761,6 +761,86 @@ form input::placeholder, form textarea::placeholder { color: var(--text-light); 
 }
 .form-success p { font-size: 0.88rem; color: var(--matcha); }
 
+/* ─── INSTAGRAM SECTION ─── */
+#instagram {
+  background: var(--cream);
+  padding: 7rem 6rem;
+}
+.ig-header {
+  text-align: center;
+  margin-bottom: 3.5rem;
+}
+.ig-handle-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--lavender-deep);
+  text-decoration: none;
+  border: 1px solid var(--lavender-light);
+  padding: 0.7rem 1.8rem;
+  transition: background 0.3s, color 0.3s, border-color 0.3s;
+  margin-top: 1.5rem;
+  display: inline-flex;
+}
+.ig-handle-link:hover {
+  background: var(--lavender-deep);
+  color: white;
+  border-color: var(--lavender-deep);
+}
+.ig-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 0.5rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.ig-tile {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  overflow: hidden;
+  position: relative;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.ig-tile:hover { transform: scale(1.04); box-shadow: 0 12px 40px rgba(62,36,85,0.15); z-index: 1; }
+.ig-tile-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  padding: 1.2rem;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+}
+.ig-tile-icon { font-size: 2rem; line-height: 1; }
+.ig-tile-label {
+  font-size: 0.62rem;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  line-height: 1.5;
+  font-weight: 400;
+}
+.ig-tile--honey    { background: #f7e8c0; }
+.ig-tile--honey .ig-tile-label { color: #8a6220; }
+.ig-tile--matcha   { background: var(--sage-light); }
+.ig-tile--matcha .ig-tile-label { color: var(--matcha); }
+.ig-tile--teas     { background: var(--lavender-pale); }
+.ig-tile--teas .ig-tile-label { color: var(--lavender-deep); }
+.ig-tile--meditation { background: var(--lavender-deep); }
+.ig-tile--meditation .ig-tile-label { color: rgba(255,255,255,0.85); }
+.ig-tile--supplements { background: var(--warm-mid); }
+.ig-tile--supplements .ig-tile-label { color: var(--text); }
+.ig-tile--organic  { background: #dceee0; }
+.ig-tile--organic .ig-tile-label { color: var(--sage); }
+.ig-cta { text-align: center; margin-top: 3.5rem; }
+
 /* ─── FOOTER ─── */
 footer {
   background: var(--text);
@@ -885,6 +965,8 @@ footer {
   .contact-right { padding: 3rem 3rem 6rem; }
   footer { padding: 4rem 3rem 2.5rem; }
   .footer-top { grid-template-columns: 1fr 1fr; gap: 3rem; }
+  #instagram { padding: 5rem 3rem; }
+  .ig-grid { grid-template-columns: repeat(3, 1fr); }
 }
 @media (max-width: 700px) {
   nav { padding: 1.2rem 1.5rem; }
@@ -905,6 +987,9 @@ footer {
   .footer-top { grid-template-columns: 1fr; gap: 2.5rem; }
   .footer-bottom { flex-direction: column; gap: 0.8rem; text-align: center; }
   .form-row { grid-template-columns: 1fr; }
+  #instagram { padding: 4rem 1.5rem; }
+  .ig-grid { grid-template-columns: repeat(2, 1fr); }
+  .ig-tile-icon { font-size: 1.5rem; }
 }
 
 /* ─── PRODUCTS GALLERY ─── */
