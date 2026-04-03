@@ -1,0 +1,170 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" width="1000" height="1000">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&amp;family=Jost:wght@200;300;400;500&amp;display=swap');
+    </style>
+
+    <!-- Background gradient: deep lavender to soft cream-purple -->
+    <radialGradient id="bgGrad" cx="50%" cy="42%" r="62%">
+      <stop offset="0%"   stop-color="#d4bee8"/>
+      <stop offset="55%"  stop-color="#a07db5"/>
+      <stop offset="100%" stop-color="#3e2455"/>
+    </radialGradient>
+
+    <!-- Subtle inner glow for circle -->
+    <radialGradient id="circleGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%"   stop-color="#faf7f2" stop-opacity="0.10"/>
+      <stop offset="100%" stop-color="#3e2455" stop-opacity="0.00"/>
+    </radialGradient>
+
+    <!-- Gold shimmer for divider -->
+    <linearGradient id="goldLine" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%"   stop-color="#c9a96e" stop-opacity="0"/>
+      <stop offset="30%"  stop-color="#e8cb8e" stop-opacity="1"/>
+      <stop offset="70%"  stop-color="#c9a96e" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#c9a96e" stop-opacity="0"/>
+    </linearGradient>
+
+    <!-- Soft vignette overlay -->
+    <radialGradient id="vignette" cx="50%" cy="50%" r="70%">
+      <stop offset="0%"   stop-color="transparent"/>
+      <stop offset="100%" stop-color="#1a0a2e" stop-opacity="0.38"/>
+    </radialGradient>
+
+    <filter id="softBlur">
+      <feGaussianBlur stdDeviation="1.2"/>
+    </filter>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- ── Background ── -->
+  <rect width="1000" height="1000" fill="url(#bgGrad)"/>
+  <rect width="1000" height="1000" fill="url(#vignette)"/>
+
+  <!-- ── Decorative outer ring ── -->
+  <circle cx="500" cy="500" r="455" fill="none" stroke="#c9a96e" stroke-width="1.2" stroke-opacity="0.35"/>
+  <circle cx="500" cy="500" r="462" fill="none" stroke="#faf7f2" stroke-width="0.6" stroke-opacity="0.15"/>
+
+  <!-- ── Lavender stem + flowers (left) ── -->
+  <!-- Stem -->
+  <line x1="185" y1="740" x2="195" y2="530" stroke="#c9a96e" stroke-width="1.5" stroke-opacity="0.55"/>
+  <!-- Buds left -->
+  <ellipse cx="183" cy="528" rx="6" ry="10" fill="#d4bee8" fill-opacity="0.7" transform="rotate(-18 183 528)"/>
+  <ellipse cx="194" cy="510" rx="6" ry="10" fill="#cbb8e0" fill-opacity="0.75" transform="rotate(-10 194 510)"/>
+  <ellipse cx="178" cy="495" rx="5" ry="9"  fill="#d4bee8" fill-opacity="0.65" transform="rotate(-22 178 495)"/>
+  <ellipse cx="198" cy="477" rx="5" ry="9"  fill="#b99fd0" fill-opacity="0.70" transform="rotate(-8 198 477)"/>
+  <ellipse cx="181" cy="462" rx="5" ry="8"  fill="#cbb8e0" fill-opacity="0.60" transform="rotate(-20 181 462)"/>
+  <ellipse cx="200" cy="448" rx="4" ry="8"  fill="#d4bee8" fill-opacity="0.55" transform="rotate(-5 200 448)"/>
+
+  <!-- ── Lavender stem + flowers (right) ── -->
+  <line x1="815" y1="740" x2="805" y2="530" stroke="#c9a96e" stroke-width="1.5" stroke-opacity="0.55"/>
+  <!-- Buds right -->
+  <ellipse cx="817" cy="528" rx="6" ry="10" fill="#d4bee8" fill-opacity="0.7"  transform="rotate(18 817 528)"/>
+  <ellipse cx="806" cy="510" rx="6" ry="10" fill="#cbb8e0" fill-opacity="0.75" transform="rotate(10 806 510)"/>
+  <ellipse cx="822" cy="495" rx="5" ry="9"  fill="#d4bee8" fill-opacity="0.65" transform="rotate(22 822 495)"/>
+  <ellipse cx="802" cy="477" rx="5" ry="9"  fill="#b99fd0" fill-opacity="0.70" transform="rotate(8 802 477)"/>
+  <ellipse cx="819" cy="462" rx="5" ry="8"  fill="#cbb8e0" fill-opacity="0.60" transform="rotate(20 819 462)"/>
+  <ellipse cx="800" cy="448" rx="4" ry="8"  fill="#d4bee8" fill-opacity="0.55" transform="rotate(5 800 448)"/>
+
+  <!-- ── Small scattered dots / pollen ── -->
+  <circle cx="270" cy="310" r="2.5" fill="#c9a96e" fill-opacity="0.40"/>
+  <circle cx="740" cy="290" r="2"   fill="#c9a96e" fill-opacity="0.35"/>
+  <circle cx="310" cy="700" r="2"   fill="#faf7f2" fill-opacity="0.25"/>
+  <circle cx="690" cy="720" r="2.5" fill="#faf7f2" fill-opacity="0.22"/>
+  <circle cx="500" cy="200" r="2"   fill="#c9a96e" fill-opacity="0.30"/>
+
+  <!-- ── Top thin gold rule ── -->
+  <rect x="340" y="292" width="320" height="0.8" fill="url(#goldLine)" rx="1"/>
+
+  <!-- ── "LAVENDER LAKES" main wordmark ── -->
+  <!-- Shadow layer (blur) -->
+  <text
+    x="500" y="390"
+    text-anchor="middle"
+    font-family="'Cormorant Garamond', 'Georgia', serif"
+    font-size="95"
+    font-weight="300"
+    font-style="italic"
+    letter-spacing="8"
+    fill="#1a0a2e"
+    fill-opacity="0.45"
+    filter="url(#softBlur)"
+    dy="4" dx="3"
+  >Lavender</text>
+  <!-- Main text -->
+  <text
+    x="500" y="390"
+    text-anchor="middle"
+    font-family="'Cormorant Garamond', 'Georgia', serif"
+    font-size="95"
+    font-weight="300"
+    font-style="italic"
+    letter-spacing="8"
+    fill="#faf7f2"
+  >Lavender</text>
+
+  <!-- "Lakes" — gold accent, same size as Lavender -->
+  <text
+    x="503" y="500"
+    text-anchor="middle"
+    font-family="'Cormorant Garamond', 'Georgia', serif"
+    font-size="95"
+    font-weight="400"
+    font-style="italic"
+    letter-spacing="8"
+    fill="#1a0a2e"
+    fill-opacity="0.40"
+    filter="url(#softBlur)"
+    dy="4" dx="3"
+  >Lakes</text>
+  <text
+    x="503" y="500"
+    text-anchor="middle"
+    font-family="'Cormorant Garamond', 'Georgia', serif"
+    font-size="95"
+    font-weight="400"
+    font-style="italic"
+    letter-spacing="8"
+    fill="#e8cb8e"
+  >Lakes</text>
+
+  <!-- ── Gold divider ── -->
+  <rect x="300" y="528" width="400" height="1" fill="url(#goldLine)" rx="1"/>
+  <!-- Small diamond ornament -->
+  <polygon points="500,520 506,526 500,532 494,526" fill="#c9a96e" fill-opacity="0.80"/>
+
+  <!-- ── "@ REIGN WELLNESS STORE" subtitle — same font-size as Lavender Lakes ── -->
+  <text
+    x="500" y="595"
+    text-anchor="middle"
+    font-family="'Jost', 'Helvetica Neue', sans-serif"
+    font-size="95"
+    font-weight="200"
+    letter-spacing="2"
+    fill="#faf7f2"
+    fill-opacity="0.82"
+    textLength="740"
+    lengthAdjust="spacingAndGlyphs"
+  >@ Reign Wellness Store</text>
+
+  <!-- ── Location tag ── -->
+  <text
+    x="500" y="655"
+    text-anchor="middle"
+    font-family="'Jost', 'Helvetica Neue', sans-serif"
+    font-size="18"
+    font-weight="200"
+    letter-spacing="4"
+    fill="#c9a96e"
+    fill-opacity="0.75"
+  >WINDERMERE · LAKE DISTRICT</text>
+
+  <!-- ── Bottom thin gold rule ── -->
+  <rect x="340" y="674" width="320" height="0.8" fill="url(#goldLine)" rx="1"/>
+
+  <!-- ── Inner circle glow overlay ── -->
+  <circle cx="500" cy="500" r="455" fill="url(#circleGlow)"/>
+</svg>
