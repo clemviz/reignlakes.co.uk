@@ -1,0 +1,1830 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Click & Collect Supplements | Lavender Lakes @ Reign Wellness Store | Windermere</title>
+  <meta name="description" content="Order premium supplements online and collect in store at Reign Wellness Store, Windermere. Secure payment via Stripe. We'll notify you when your order is ready." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* ─── ORDER PAGE SPECIFIC ─── */
+    .order-page-hero {
+      background: var(--lavender-deep);
+      color: white;
+      padding: 10rem 6rem 6rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .order-page-hero::before {
+      content: '';
+      position: absolute; top: -40%; right: -5%;
+      width: 500px; height: 500px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.04);
+    }
+    .order-page-hero::after {
+      content: '';
+      position: absolute; bottom: -30%; left: 5%;
+      width: 350px; height: 350px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.03);
+    }
+    .order-page-hero .section-label {
+      color: rgba(255,255,255,0.6);
+      justify-content: center;
+    }
+    .order-page-hero .section-label::before {
+      background: rgba(255,255,255,0.4);
+    }
+    .order-page-hero .section-title { color: white; }
+    .order-page-hero .section-title em { color: var(--gold); }
+    .order-page-hero p {
+      font-size: 0.97rem;
+      color: rgba(255,255,255,0.72);
+      line-height: 2;
+      max-width: 540px;
+      margin: 1.4rem auto 0;
+    }
+
+    /* ─── HOW IT WORKS ─── */
+    .how-it-works {
+      background: var(--cream);
+      padding: 6rem 6rem;
+      text-align: center;
+    }
+    .how-it-works .section-label { justify-content: center; }
+    .how-it-works .section-label::before { display: none; }
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      max-width: 880px;
+      margin: 4rem auto 0;
+    }
+    .step-card {
+      padding: 2.5rem 2rem;
+      background: var(--warm-white);
+      border-top: 2px solid var(--lavender-light);
+      position: relative;
+    }
+    .step-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3.5rem;
+      font-weight: 300;
+      color: var(--lavender-light);
+      line-height: 1;
+      margin-bottom: 1rem;
+    }
+    .step-card h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      font-weight: 400;
+      color: var(--lavender-deep);
+      margin-bottom: 0.6rem;
+    }
+    .step-card p {
+      font-size: 0.87rem;
+      color: var(--text-light);
+      line-height: 1.8;
+    }
+
+    /* ─── SUPPLEMENTS GRID ─── */
+    .supplements-section {
+      background: var(--warm-white);
+      padding: 7rem 6rem;
+    }
+    .supplements-section .section-label { justify-content: center; }
+    .supplements-section .section-label::before { display: none; }
+    .supplements-header {
+      text-align: center;
+      max-width: 620px;
+      margin: 0 auto 5rem;
+    }
+    .supplements-header p {
+      font-size: 0.95rem;
+      color: var(--text-light);
+      line-height: 1.9;
+      margin-top: 1rem;
+    }
+    .supp-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.8rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .supp-card {
+      background: var(--cream);
+      border: 1px solid rgba(184,158,196,0.18);
+      padding: 2.2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      transition: transform 0.3s, box-shadow 0.3s;
+      position: relative;
+    }
+    .supp-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 50px rgba(122,92,138,0.1);
+    }
+    .supp-badge {
+      display: inline-block;
+      font-size: 0.62rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      background: var(--lavender-pale);
+      color: var(--lavender-deep);
+      padding: 0.3rem 0.8rem;
+      align-self: flex-start;
+    }
+    .supp-badge.popular {
+      background: var(--gold);
+      color: white;
+    }
+    .supp-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-weight: 400;
+      color: var(--lavender-deep);
+      line-height: 1.2;
+    }
+    .supp-desc {
+      font-size: 0.84rem;
+      color: var(--text-light);
+      line-height: 1.75;
+      flex-grow: 1;
+    }
+    .supp-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 1.2rem;
+      border-top: 1px solid rgba(184,158,196,0.2);
+    }
+    .supp-price {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 300;
+      color: var(--text);
+    }
+    .supp-price span {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 300;
+      color: var(--text-light);
+    }
+    .btn-order {
+      display: inline-block;
+      background: var(--lavender-deep);
+      color: white;
+      padding: 0.75rem 1.6rem;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background 0.3s, transform 0.25s;
+      border: none;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .btn-order:hover { background: var(--lavender); transform: translateY(-2px); }
+
+    /* ─── STRIPE TRUST BADGE ─── */
+    .trust-bar {
+      background: var(--lavender-deep);
+      color: rgba(255,255,255,0.75);
+      padding: 1.2rem 6rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 3.5rem;
+      flex-wrap: wrap;
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .trust-item svg { opacity: 0.7; flex-shrink: 0; }
+
+    /* ─── SEARCH BAR ─── */
+    .supp-search-wrap {
+      max-width: 480px;
+      margin: 0 auto 2rem;
+      position: relative;
+    }
+    .supp-search {
+      width: 100%;
+      padding: 0.75rem 1rem 0.75rem 2.8rem;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.82rem;
+      letter-spacing: 0.06em;
+      border: 1px solid rgba(122,92,138,0.3);
+      background: var(--cream);
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.25s, box-shadow 0.25s;
+      box-sizing: border-box;
+    }
+    .supp-search::placeholder { color: #b0a0ba; }
+    .supp-search:focus {
+      border-color: var(--lavender);
+      box-shadow: 0 0 0 3px rgba(122,92,138,0.1);
+    }
+    .supp-search-icon {
+      position: absolute;
+      left: 0.85rem;
+      top: 50%;
+      transform: translateY(-50%);
+      opacity: 0.4;
+      pointer-events: none;
+    }
+    .supp-highlight {
+      background: rgba(201,169,110,0.35);
+      color: var(--lavender-deep);
+      font-weight: 500;
+      border-radius: 2px;
+      padding: 0 1px;
+    }
+    .supp-no-results {
+      display: none;
+      text-align: center;
+      grid-column: 1 / -1;
+      padding: 3rem 1rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      font-style: italic;
+      color: var(--text-light);
+    }
+
+    /* ─── BRAND FILTER ─── */
+    .brand-filters {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin: 0 auto 3.5rem;
+      max-width: 1100px;
+    }
+    .filter-btn {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 0.6rem 1.4rem;
+      border: 1px solid rgba(122,92,138,0.3);
+      background: transparent;
+      color: var(--lavender-deep);
+      cursor: pointer;
+      transition: background 0.25s, color 0.25s, border-color 0.25s;
+    }
+    .filter-btn:hover {
+      background: var(--lavender-pale);
+      border-color: var(--lavender);
+    }
+    .filter-btn.active {
+      background: var(--lavender-deep);
+      color: white;
+      border-color: var(--lavender-deep);
+    }
+    .supp-card.hidden { display: none; }
+
+    /* ─── PRODUCT IMAGE + HOVER OVERLAY ─── */
+    .supp-img-wrap {
+      position: relative;
+      width: calc(100% + 4.4rem);
+      margin: -2.2rem -2.2rem 0.6rem;
+      height: 190px;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .supp-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.45s ease;
+    }
+    .supp-card:hover .supp-img-wrap img {
+      transform: scale(1.04);
+    }
+    .supp-desc-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(42, 24, 60, 0.87);
+      color: rgba(255,255,255,0.92);
+      padding: 1.2rem 1.4rem;
+      display: flex;
+      align-items: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .supp-card:hover .supp-desc-overlay {
+      opacity: 1;
+    }
+    .supp-desc-overlay .supp-desc {
+      font-size: 0.82rem;
+      line-height: 1.75;
+      color: rgba(255,255,255,0.88);
+    }
+
+    /* ─── BRAND COLOURS ─── */
+    :root {
+      --brand-viridian:   #3D8B77;
+      --brand-lamberts:   #2B4EAE;
+      --brand-pharma:     #E8721A;
+      --brand-avogel:     #7AB648;
+    }
+
+    /* Bookmark tab — top-right corner of each card */
+    .supp-card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 1.4rem;
+      width: 16px;
+      height: 26px;
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 82%, 0 100%);
+      opacity: 0.88;
+    }
+    .supp-card[data-brand="viridian"]::after   { background: var(--brand-viridian); }
+    .supp-card[data-brand="lamberts"]::after   { background: var(--brand-lamberts); }
+    .supp-card[data-brand="pharma-nord"]::after { background: var(--brand-pharma); }
+    .supp-card[data-brand="avogel"]::after     { background: var(--brand-avogel); }
+
+    /* Filter buttons — idle tint */
+    .filter-btn[data-filter="viridian"]   { border-color: var(--brand-viridian);  color: var(--brand-viridian); }
+    .filter-btn[data-filter="lamberts"]   { border-color: var(--brand-lamberts);  color: var(--brand-lamberts); }
+    .filter-btn[data-filter="pharma-nord"] { border-color: var(--brand-pharma);   color: var(--brand-pharma); }
+    .filter-btn[data-filter="avogel"]     { border-color: var(--brand-avogel);    color: var(--brand-avogel); }
+
+    /* Filter buttons — active state */
+    .filter-btn[data-filter="viridian"].active    { background: var(--brand-viridian);  border-color: var(--brand-viridian);  color: white; }
+    .filter-btn[data-filter="lamberts"].active    { background: var(--brand-lamberts);  border-color: var(--brand-lamberts);  color: white; }
+    .filter-btn[data-filter="pharma-nord"].active { background: var(--brand-pharma);    border-color: var(--brand-pharma);    color: white; }
+    .filter-btn[data-filter="avogel"].active      { background: var(--brand-avogel);    border-color: var(--brand-avogel);    color: white; }
+
+    /* Hover states for brand buttons */
+    .filter-btn[data-filter="viridian"]:hover    { background: var(--brand-viridian);  color: white; }
+    .filter-btn[data-filter="lamberts"]:hover    { background: var(--brand-lamberts);  color: white; }
+    .filter-btn[data-filter="pharma-nord"]:hover { background: var(--brand-pharma);    color: white; }
+    .filter-btn[data-filter="avogel"]:hover      { background: var(--brand-avogel);    color: white; }
+
+    /* ─── CUSTOM ORDER BOX ─── */
+    .custom-order-box {
+      max-width: 680px;
+      margin: 5rem auto 0;
+      background: var(--cream);
+      border: 1px solid rgba(184,158,196,0.25);
+      padding: 3rem;
+      text-align: center;
+    }
+    .custom-order-box h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 400;
+      color: var(--lavender-deep);
+      margin-bottom: 0.8rem;
+    }
+    .custom-order-box p {
+      font-size: 0.9rem;
+      color: var(--text-light);
+      line-height: 1.8;
+      margin-bottom: 1.8rem;
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 1100px) {
+      .order-page-hero { padding: 9rem 3rem 5rem; }
+      .how-it-works { padding: 5rem 3rem; }
+      .supplements-section { padding: 6rem 3rem; }
+      .supp-grid { grid-template-columns: repeat(2, 1fr); }
+      .trust-bar { padding: 1.2rem 3rem; gap: 2rem; }
+      .steps-grid { grid-template-columns: 1fr; max-width: 420px; }
+    }
+    @media (max-width: 700px) {
+      .order-page-hero { padding: 8rem 1.5rem 4rem; }
+      .how-it-works { padding: 4rem 1.5rem; }
+      .supplements-section { padding: 5rem 1.5rem; }
+      .supp-grid { grid-template-columns: 1fr; }
+      .trust-bar { padding: 1rem 1.5rem; gap: 1.5rem; font-size: 0.68rem; }
+      .custom-order-box { padding: 2rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ─── NAV ─── -->
+  <nav id="main-nav">
+    <a href="index.html#hero" class="nav-logo" style="display:flex; align-items:center; gap:0.75rem; line-height:1.1;">
+      <img src="img/reign_logo.jpeg" alt="Reign Wellness Store logo" style="height:72px; width:auto; border-radius:4px;">
+      <span style="display:flex; flex-direction:column;">
+        <span>Lavender <span>Lakes</span></span>
+        <span style="font-size:1.1rem; letter-spacing:0.18em; color:var(--gold); font-style:italic; font-weight:400;">@ Reign Wellness Store</span>
+      </span>
+    </a>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="index.html#order">Products</a></li>
+      <li><a href="index.html#meditation">Meditation</a></li>
+      <li><a href="index.html#emf-assessment">EMF</a></li>
+      <li><a href="order.html" class="nav-collect active">Click &amp; Collect</a></li>
+      <li><a href="index.html#contact" class="nav-cta">Contact</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="index.html#order" class="mobile-link">Products</a>
+    <a href="index.html#meditation" class="mobile-link">Meditation</a>
+    <a href="index.html#emf-assessment" class="mobile-link">EMF</a>
+    <a href="order.html" class="mobile-link" style="color:var(--gold);">Click &amp; Collect</a>
+    <a href="index.html#contact" class="mobile-link mobile-cta">Get in Touch</a>
+  </div>
+
+  <!-- ─── HERO BANNER ─── -->
+  <section class="order-page-hero">
+    <div style="position:relative; z-index:1;">
+      <p class="section-label" style="justify-content:center; margin-bottom:1rem;">Reign Wellness Store · Windermere</p>
+      <h1 class="section-title" style="font-size:clamp(2.4rem,4vw,3.8rem); color:white; margin-bottom:0;">
+        Click &amp; <em>Collect</em>
+      </h1>
+      <div class="divider centered" style="background:rgba(201,169,110,0.6); margin: 1.4rem auto;"></div>
+      <p>Order your supplements securely online and collect from our Windermere store. We'll contact you as soon as your order is ready.</p>
+    </div>
+  </section>
+
+  <!-- ─── TRUST BAR ─── -->
+  <div class="trust-bar">
+    <div class="trust-item">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+      Secure Stripe Payment
+    </div>
+    <div class="trust-item">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 7H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/><path d="M16 3v4M8 3v4"/></svg>
+      Pay in Advance · Collect in Store
+    </div>
+    <div class="trust-item">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 14 19.79 19.79 0 0 1 1.6 5.43a2 2 0 0 1 1.98-2.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 10.91a16 16 0 0 0 6.29 6.29l1.75-1.83a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      We'll Call When Ready
+    </div>
+    <div class="trust-item">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+      Premium Quality Guaranteed
+    </div>
+  </div>
+
+  <!-- ─── HOW IT WORKS ─── -->
+  <section class="how-it-works">
+    <p class="section-label reveal">Simple &amp; Secure</p>
+    <h2 class="section-title reveal">How it <em>works</em></h2>
+    <div class="divider centered reveal"></div>
+    <div class="steps-grid">
+      <div class="step-card reveal">
+        <div class="step-number">01</div>
+        <h4>Choose &amp; Pay</h4>
+        <p>Select your supplements from the list below and complete your secure payment via Stripe. Apple Pay and Google Pay accepted.</p>
+      </div>
+      <div class="step-card reveal reveal-delay-1">
+        <div class="step-number">02</div>
+        <h4>We Order for You</h4>
+        <p>We place your order with our supplier. You'll receive an automatic payment receipt from Stripe straight away.</p>
+      </div>
+      <div class="step-card reveal reveal-delay-2">
+        <div class="step-number">03</div>
+        <h4>Collect in Store</h4>
+        <p>We'll call or email you as soon as your order arrives in store — usually within a few days. Come in and collect at your convenience.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── SUPPLEMENTS ─── -->
+  <section class="supplements-section">
+    <div class="supplements-header reveal">
+      <p class="section-label">Premium Supplements</p>
+      <h2 class="section-title">Order for <em>collection</em></h2>
+      <div class="divider centered"></div>
+      <p>All supplements are sourced from trusted, high-quality brands. Click the button on any product to pay securely via Stripe — we'll be in touch when your order is ready to collect.</p>
+    </div>
+
+    <div class="supp-search-wrap">
+      <svg class="supp-search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <input type="search" class="supp-search" id="supp-search" placeholder="Search products e.g. Vitamin B12, magnesium…" autocomplete="off">
+    </div>
+
+    <div class="brand-filters">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="viridian">Viridian</button>
+      <button class="filter-btn" data-filter="lamberts">Lamberts</button>
+      <button class="filter-btn" data-filter="pharma-nord">Pharma Nord</button>
+      <button class="filter-btn" data-filter="avogel">A.Vogel</button>
+    </div>
+
+    <div class="supp-grid">
+
+      <div class="supp-card reveal" data-brand="lamberts">
+        <div class="supp-img-wrap">
+          <img src="https://files.stripe.com/links/MDB8YWNjdF8xVGxDa2cwZTZaMDE0RG5qfGZsX2xpdmVfZnEzNTQxQkc0amxMNG5xMXdrNUhibUZJ00S4Z9t5GQ" alt="MagAsorb Powder">
+          <div class="supp-desc-overlay">
+            <div class="supp-desc">MagAsorb powder supplies magnesium in the highly bioavailable citrate form, with each 5.5g scoop providing 375mg of magnesium, which is 100% of the adult NRV. Our highly soluble, pleasant citrus flavoured powder is suitable for vegetarians and vegans, and is easily mixed into a glass of water.</div>
+          </div>
+        </div>
+        <div class="supp-name">MagAsorb Powder</div>
+        <div class="supp-meta">
+          <div class="supp-price">£22.95 <span>/ 165g</span></div>
+          <a href="https://buy.stripe.com/fZubIT3VN9nnfDn1Yl7wA01" class="btn-order" target="_blank" rel="noopener noreferrer">Order &amp; Pay</a>
+        </div>
+      </div>
+
+      <div class="supp-card reveal" data-brand="lamberts">
+        <div class="supp-img-wrap">
+          <img src="https://files.stripe.com/links/MDB8YWNjdF8xVGxDa2cwZTZaMDE0RG5qfGZsX2xpdmVfbHJtdEtCc29UbjUzTUFLUTNWS2Z2Um5n00cVSMSmnZ" alt="Korean Ginseng 1200mg">
+          <div class="supp-desc-overlay">
+            <div class="supp-desc">Lamberts Korean Ginseng 1200mg is one of the strongest available and has a guaranteed 24mg of ginsenosides per tablet. These are the main active ingredients in Korean ginseng but surprisingly many ginseng supplements don't even list them on the label, let alone guarantee their level.</div>
+          </div>
+        </div>
+        <div class="supp-name">Korean Ginseng 1200mg</div>
+        <div class="supp-meta">
+          <div class="supp-price">£9.95 <span>/ 60 tabs</span></div>
+          <a href="https://buy.stripe.com/fZu5kvgIz2YZ0It0Uh7wA02" class="btn-order" target="_blank" rel="noopener noreferrer">Order &amp; Pay</a>
+        </div>
+      </div>
+
+      <div class="supp-card reveal" data-brand="lamberts">
+        <div class="supp-img-wrap">
+          <img src="https://files.stripe.com/links/MDB8YWNjdF8xVGxDa2cwZTZaMDE0RG5qfGZsX2xpdmVfQ1RxbUVyaUg1YzhhclRURHlxOGEzbDBQ000PF0VVDJ" alt="Iron 14mg">
+          <div class="supp-desc-overlay">
+            <div class="supp-desc">The iron in this product is in the form of citrate as this is known to be easily absorbed, and some nutritionists consider that this form is less likely to cause constipation than the more common ferrous sulphate. Low iron intakes are surprisingly common in the UK and official data shows that 89% of young women have a daily intake of iron which is less than the RNI of 14.</div>
+          </div>
+        </div>
+        <div class="supp-name">Iron 14mg</div>
+        <div class="supp-meta">
+          <div class="supp-price">£9.95 <span>/ 100 tabs</span></div>
+          <a href="https://buy.stripe.com/6oUcMX3VNeHH1MxbyV7wA03" class="btn-order" target="_blank" rel="noopener noreferrer">Order &amp; Pay</a>
+        </div>
+      </div>
+
+      <div class="supp-card reveal" data-brand="lamberts">
+        <div class="supp-img-wrap">
+          <img src="https://files.stripe.com/links/MDB8YWNjdF8xVGxDa2cwZTZaMDE0RG5qfGZsX2xpdmVfd1R0bnRoTVpVUE53eDM2UFlYbWhoYmZz00iJoVG4yf" alt="Iodine 150µg">
+          <div class="supp-desc-overlay">
+            <div class="supp-desc">For normal thyroid, cognitive & neurological function. Ideal for those on plant based diets whose intakes may be low. As potassium iodine to ensure an accurate dose in each tablet</div>
+          </div>
+        </div>
+        <div class="supp-name">Iodine 150µg</div>
+        <div class="supp-meta">
+          <div class="supp-price">£9.95 <span>/ 180 tabs</span></div>
+          <a href="https://buy.stripe.com/fZu9ALgIz7fffDneL77wA04" class="btn-order" target="_blank" rel="noopener noreferrer">Order &amp; Pay</a>
+        </div>
+      </div>
+
+      <div class="supp-card reveal" data-brand="lamberts">
+        <div class="supp-img-wrap">
+          <img src="https://files.stripe.com/links/MDB8YWNjdF8xVGxDa2cwZTZaMDE0RG5qfGZsX2xpdmVfZFF3cU80VXh6cWpNdHRzZUhoOWtJVEVp00pMY2lgfV" alt="Immune - Guard Beta Glucans – 250mg 1,3/1,6 beta glucans">
+          <div class="supp-desc-overlay">
+            <div class="supp-desc">Beta glucans are naturally occurring polysaccharides found in the cell walls of certain mushrooms and yeasts. They are often recommended to prepare the immune system for any potential challenges.</div>
+          </div>
+        </div>
+        <div class="supp-name">Immune - Guard Beta Glucans – 250mg 1,3/1,6 beta glucans</div>
+        <div class="supp-meta">
+          <div class="supp-price">£20.95 <span>/ 60 tabs</span></div>
+          <a href="https://buy.stripe.com/eVq28jakb7ffcrb46t7wA05" class="btn-order" target="_blank" rel="noopener noreferrer">Order &amp; Pay</a>
+        </div>
+      </div>
+
+      <div class="supp-card reveal" data-brand="lamberts">
+        <div class="supp-img-wrap">
+          <img src="https://files.stripe.com/links/MDB8YWNjdF8xVGxDa2cwZTZaMDE0RG5qfGZsX2xpdmVfZXcwdFV6VmtLaVR6cUVhdkZ3djNHYnd6007MtlNsoY" alt="Ginkgo 6000mg">
+          <div class="supp-desc-overlay">
+            <div class="supp-desc">This product is one of the highest strength ginkgo products available in the UK. Each tablet contains 120mg extract, equivalent to 6000mg of dried leaf.</div>
+          </div>
+        </div>
+        <div class="supp-name">Ginkgo 6000mg</div>
+        <div class="supp-meta">
+          <div class="supp-price">£12.95 <span>/ 60 tabs</span></div>
+          <a href="https://buy.stripe.com/9B66oz63Vczz0It46t7wA06" class="btn-order" target="_blank" rel="noopener noreferrer">Order &amp; Pay</a>
+        </div>
+      </div>
+
+      <div class="supp-card reveal" data-brand="lamberts">
+        <div class="supp-img-wrap">
+          <img src="https://files.stripe.com/links/MDB8YWNjdF8xVGxDa2cwZTZaMDE0RG5qfGZsX2xpdmVfN1BGM3BVanpWMVA0cElVY3NtRWwxN0dO00uXFFOaRG" alt="FOS (Fructo - oligosaccharides)">
+          <div class="supp-desc-overlay">
+            <div class="supp-desc">This product consists of a special soluble fibre called Fructo-oligosaccharides (FOS), which is found in many vegetables such as chicory and onions. When you take FOS it passes through your digestive system undigested until it reaches your bowel where the live bacteria use it as a food source.</div>
+          </div>
+        </div>
+        <div class="supp-name">FOS (Fructo - oligosaccharides)</div>
+        <div class="supp-meta">
+          <div class="supp-price">£19.95 <span>/ 500g powder</span></div>
+          <a href="https://buy.stripe.com/6oUeV58c37ffbn7dH37wA07" class="btn-order" target="_blank" rel="noopener noreferrer">Order &amp; Pay</a>
+        </div>
+      </div>
+
+      <div class="supp-card reveal" data-brand="lamberts">
+        <div class="supp-img-wrap">
+          <img src="https://files.stripe.com/links/MDB8YWNjdF8xVGxDa2cwZTZaMDE0RG5qfGZsX2xpdmVfaXc2VzY5Mk5OWVA2eFYzZ1NpWk1CbVZR00izl4PKhR" alt="Folic Acid 400µg">
+          <div class="supp-desc-overlay">
+            <div class="supp-desc">Folic acid plays an essential role in cell multiplication and is critical in DNA and RNA formation, and is therefore especially important in foetal development. It is now widely accepted and established that lack of folate during the first trimester of pregnancy increases the risk of neural tube defects in the developing baby.</div>
+          </div>
+        </div>
+        <div class="supp-name">Folic Acid 400µg</div>
+        <div class="supp-meta">
+          <div class="supp-price">£5.95 <span>/ 100 tabs</span></div>
+          <a href="https://buy.stripe.com/9B6aEP8c34339eZ32p7wA08" class="btn-order" target="_blank" rel="noopener noreferrer">Order &amp; Pay</a>
+        </div>
+      </div>
+
+      <div class="supp-card reveal" data-brand="lamberts">
+        <div class="supp-img-wrap">
+          <img src="https://files.stripe.com/links/MDB8YWNjdF8xVGxDa2cwZTZaMDE0RG5qfGZsX2xpdmVfMjhHRmJXWVVxcVJzNG1DcWxmd3lwcVVH00TNqQmlx5" alt="Flaxseed Oil 1000mg">
+          <div class="supp-desc-overlay">
+            <div class="supp-desc">Lamberts Flaxseed Oil is an excellent alternative to fish oils as the oil is 50% by weight Alpha-Linolenic Acid and therefore contains almost twice as much Omega 3 per gram of weight than standard strength fish oils. Alpha-Linolenic Acid is converted by the body into the omega 3 fatty acids EPA and DHA according to its need.</div>
+          </div>
+        </div>
+        <div class="supp-name">Flaxseed Oil 1000mg</div>
+        <div class="supp-meta">
+          <div class="supp-price">£15.50 <span>/ 90 caps</span></div>
+          <a href="https://buy.stripe.com/dRm9AL63V7ff62N8mJ7wA09" class="btn-order" target="_blank" rel="noopener noreferrer">Order &amp; Pay</a>
+        </div>
+      </div>
+
+      <div class="supp-card reveal" data-brand="lamberts">
+        <div class="supp-img-wrap">
+          <img src="https://files.stripe.com/links/MDB8YWNjdF8xVGxDa2cwZTZaMDE0RG5qfGZsX2xpdmVfQThHdUFVRjd0OXRxUzQ5VElmOENyQnBr00mSv1v3sB" alt="Curcumin Ultra +">
+          <div class="supp-desc-overlay">
+            <div class="supp-desc">Lamberts Curcumin Ultra + contains a technically advanced turmeric extract that has been specially prepared to greatly increase its absorption from the digestive system. Each capsule provides 50mg of curcuminoids in the same profile as they are naturally found in turmeric.</div>
+          </div>
+        </div>
+        <div class="supp-name">Curcumin Ultra +</div>
+        <div class="supp-meta">
+          <div class="supp-price">£38.95 <span>/ 60 caps</span></div>
+          <a href="https://buy.stripe.com/fZu28jcsj4339eZ5ax7wA0a" class="btn-order" target="_blank" rel="noopener noreferrer">Order &amp; Pay</a>
+        </div>
+      </div>
+
+      <div class="supp-card reveal" data-brand="lamberts">
+        <div class="supp-img-wrap">
+          <img src="https://files.stripe.com/links/MDB8YWNjdF8xVGxDa2cwZTZaMDE0RG5qfGZsX2xpdmVfc1BCUzRJd21tQ1ZGamxjTFRRUWZZUk5u001YjXUt5e" alt="Cranberry Capsules 18,750mg">
+          <div class="supp-desc-overlay">
+            <div class="supp-desc">Cranberries have long been known to women for the health of the urinary system. However, cranberry juice is very sharp to the taste and consequently many commercial cranberry drinks are often laden with sugar and high in calories.</div>
+          </div>
+        </div>
+        <div class="supp-name">Cranberry Capsules 18,750mg</div>
+        <div class="supp-meta">
+          <div class="supp-price">£17.50 <span>/ 60 caps</span></div>
+          <a href="https://buy.stripe.com/4gM9ALeAr577fDn32p7wA0b" class="btn-order" target="_blank" rel="noopener noreferrer">Order &amp; Pay</a>
+        </div>
+      </div>
+
+      <div class="supp-card reveal" data-brand="lamberts">
+        <div class="supp-img-wrap">
+          <img src="https://files.stripe.com/links/MDB8YWNjdF8xVGxDa2cwZTZaMDE0RG5qfGZsX2xpdmVfSFl2eENaMVljbTZKeHJsdU90am1NY3hm00S7vuNfPb" alt="Cod Liver Oil 1000mg">
+          <div class="supp-desc-overlay">
+            <div class="supp-desc">The most important ingredients in cod liver oil are the omega 3 fatty acids called EPA and DHA, and this one-a-day product from Lamberts has higher levels of these two healthy nutrients than you will find in most shop-bought cod liver oil products. Lamberts High Strength Cod Liver Oil capsules are manufactured in the UK in factories working to GMP pharmaceutical standards.</div>
+          </div>
+        </div>
+        <div class="supp-name">Cod Liver Oil 1000mg</div>
+        <div class="supp-meta">
+          <div class="supp-price">£21.95 <span>/ 180 caps</span></div>
+          <a href="https://buy.stripe.com/5kQeV5fEv2YZaj346t7wA0c" class="btn-order" target="_blank" rel="noopener noreferrer">Order &amp; Pay</a>
+        </div>
+      </div>
+
+      <div class="supp-card reveal" data-brand="lamberts">
+        <div class="supp-img-wrap">
+          <img src="https://files.stripe.com/links/MDB8YWNjdF8xVGxDa2cwZTZaMDE0RG5qfGZsX2xpdmVfNkt3YVNxZzhBcllXUUdhbHNBVUc1Tm0w003KeVNe2U" alt="Cinnamon 2500mg">
+          <div class="supp-desc-overlay">
+            <div class="supp-desc">Herbalists have known about cinnamon for 4,000 years and it has traditionally been used to help calm digestive problems. However in recent times cinnamon has been the focus of research that indicates that it may also help the body maintain a more even balance of its energy reserves between meals.</div>
+          </div>
+        </div>
+        <div class="supp-name">Cinnamon 2500mg</div>
+        <div class="supp-meta">
+          <div class="supp-price">£12.95 <span>/ 60 tabs</span></div>
+          <a href="https://buy.stripe.com/14A6ozcsjfLL0It5ax7wA0d" class="btn-order" target="_blank" rel="noopener noreferrer">Order &amp; Pay</a>
+        </div>
+      </div>
+
+      <div class="supp-card reveal" data-brand="lamberts">
+        <div class="supp-img-wrap">
+          <img src="https://files.stripe.com/links/MDB8YWNjdF8xVGxDa2cwZTZaMDE0RG5qfGZsX2xpdmVfZlQ0UHVwVmxBVm5IWHd3V2xDdDhUckhr00jNsu30fN" alt="Biotin 500µg">
+          <div class="supp-desc-overlay">
+            <div class="supp-desc">This vitamin was first isolated from egg yolk in 1935 and is found in a variety of combined forms in both animal and plant tissues. In the animal it is stored in the liver. The co-enzyme properties of biotin are involved in the processes by which carbohydrate and protein is metabolized for energy release and to take part in the production of prostaglandins from essential fatty acids.</div>
+          </div>
+        </div>
+        <div class="supp-name">Biotin 500µg</div>
+        <div class="supp-meta">
+          <div class="supp-price">£11.95 <span>/ 90 caps</span></div>
+          <a href="https://buy.stripe.com/bJe00b2RJ43376R0Uh7wA0e" class="btn-order" target="_blank" rel="noopener noreferrer">Order &amp; Pay</a>
+        </div>
+      </div>
+
+      <div class="supp-card reveal" data-brand="lamberts">
+        <div class="supp-img-wrap">
+          <img src="https://files.stripe.com/links/MDB8YWNjdF8xVGxDa2cwZTZaMDE0RG5qfGZsX2xpdmVfajl1bzhDNFdlVU14cHBrcnYwZG0yZ2N300X7QuDwcL" alt="Biome Balance Everyday">
+          <div class="supp-desc-overlay">
+            <div class="supp-desc">A thriving and varied microbiome is thought to be helpful for maintaining optimal health, and Biome Balance Everyday is formulated using only scientifically researched bacterial strains. Featuring 10 billion bacteria, of two well researched strains (Lactobacillus acidophilus and Bifidobacterium bifidum), it is supplied in easy-to-swallow, one a day capsules making it simple to incorporate into your daily routine.</div>
+          </div>
+        </div>
+        <div class="supp-name">Biome Balance Everyday</div>
+        <div class="supp-meta">
+          <div class="supp-price">£23.50 <span>/ 60 caps</span></div>
+          <a href="https://buy.stripe.com/8x2dR13VNeHHezj8mJ7wA0f" class="btn-order" target="_blank" rel="noopener noreferrer">Order &amp; Pay</a>
+        </div>
+      </div>
+
+      <div class="supp-card reveal" data-brand="lamberts">
+        <div class="supp-img-wrap">
+          <img src="https://files.stripe.com/links/MDB8YWNjdF8xVGxDa2cwZTZaMDE0RG5qfGZsX2xpdmVfSFVRcThZVG9BMWI5dktEdXNWVlFpa24y00Tg6mRc6L" alt="Bio - Iron Complex">
+          <div class="supp-desc-overlay">
+            <div class="supp-desc">Bio-Iron Complex contains iron and vitamin B12 which contribute to a reduction in tiredness and fatigue and the normal function of the immune system. Iron is included as bisglycinate, a form of iron which is well absorbed and tolerated by sensitive stomachs.</div>
+          </div>
+        </div>
+        <div class="supp-name">Bio - Iron Complex</div>
+        <div class="supp-meta">
+          <div class="supp-price">£15.95 <span>/ 120 tabs</span></div>
+          <a href="https://buy.stripe.com/9B6bIT4ZR8jjdvf0Uh7wA0g" class="btn-order" target="_blank" rel="noopener noreferrer">Order &amp; Pay</a>
+        </div>
+      </div>
+
+      <div class="supp-card reveal" data-brand="lamberts">
+        <div class="supp-img-wrap">
+          <img src="https://files.stripe.com/links/MDB8YWNjdF8xVGxDa2cwZTZaMDE0RG5qfGZsX2xpdmVfVHpBNm1naUJIcW14aEFaMWd2bFVGSDhz00IOkS9oGU" alt="Ashwagandha Advance">
+          <div class="supp-desc-overlay">
+            <div class="supp-desc">Ashwagandha, also known as Indian Ginseng, has been used since ancient times and there are hundreds of studies by medical researchers who have been studying ashwagandha for years with great interest. Lamberts Ashwagandha Advance combines the important properties found in the herb together with added vitamin C and zinc, for the normal function of the immune system.</div>
+          </div>
+        </div>
+        <div class="supp-name">Ashwagandha Advance</div>
+        <div class="supp-meta">
+          <div class="supp-price">£19.25 <span>/ 60 caps</span></div>
+          <a href="https://buy.stripe.com/eVq3cneAr0QRbn7fPb7wA0h" class="btn-order" target="_blank" rel="noopener noreferrer">Order &amp; Pay</a>
+        </div>
+      </div>
+
+      <div class="supp-card reveal" data-brand="avogel">
+        <div class="supp-img-wrap">
+          <img src="https://files.stripe.com/links/MDB8YWNjdF8xVGxDa2cwZTZaMDE0RG5qfGZsX2xpdmVfUGVBYVBqQmFxRDlFdU51ak10emRFYld3000HF3nEZi" alt="Atrogel Arnica Gel">
+          <div class="supp-desc-overlay">
+            <div class="supp-desc">Made with Fresh Arnica Montana for Natural Pain Support - Contains a high-quality extract of fresh Arnica montana to support the relief of muscle aches, joint pain, stiffness, and post-exercise soreness naturally.</div>
+          </div>
+        </div>
+        <div class="supp-name">Atrogel Arnica Gel</div>
+        <div class="supp-meta">
+          <div class="supp-price">£15.50 <span>/ 100 mL</span></div>
+          <a href="https://buy.stripe.com/3cIeV51NFfLLbn746t7wA0i" class="btn-order" target="_blank" rel="noopener noreferrer">Order &amp; Pay</a>
+        </div>
+      </div>
+
+      <div class="supp-card reveal" data-brand="avogel">
+        <div class="supp-img-wrap">
+          <img src="https://files.stripe.com/links/MDB8YWNjdF8xVGxDa2cwZTZaMDE0RG5qfGZsX2xpdmVfTVNlUUFRaGtmTEY5bkpkaWJ5dFh6eDBs00jpHCeYXo" alt="Atrogel Arnica Gel">
+          <div class="supp-desc-overlay">
+            <div class="supp-desc">Made with Fresh Arnica Montana for Natural Pain Support - Contains a high-quality extract of fresh Arnica montana to support the relief of muscle aches, joint pain, stiffness, and post-exercise soreness naturally.</div>
+          </div>
+        </div>
+        <div class="supp-name">Atrogel Arnica Gel</div>
+        <div class="supp-meta">
+          <div class="supp-price">£9.95 <span>/ 50 mL</span></div>
+          <a href="https://buy.stripe.com/4gM6oz2RJdDD8aVeL77wA0j" class="btn-order" target="_blank" rel="noopener noreferrer">Order &amp; Pay</a>
+        </div>
+      </div>
+
+      <div class="supp-card reveal" data-brand="viridian">
+        <div class="supp-img-wrap">
+          <img src="https://files.stripe.com/links/MDB8YWNjdF8xVGxDa2cwZTZaMDE0RG5qfGZsX2xpdmVfNTVpMU1uMnV3SVJSMVV4M21YNEJteDVa00s2ynge8C" alt="NAD+ Cellular Protect">
+          <div class="supp-desc-overlay">
+            <div class="supp-desc">Support cellular health from within with Viridian NAD+ Cellular Protect. This advanced formula combines NAD+, NR and other key nutrients to reduce daily fatigue and fight oxidative stress. A researched alternative to NMN. 100% active ingredients formulated by expert nutritionists.</div>
+          </div>
+        </div>
+        <div class="supp-name">NAD+ Cellular Protect</div>
+        <div class="supp-meta">
+          <div class="supp-price">£29.50 <span>/ 30 caps</span></div>
+          <a href="https://buy.stripe.com/bJe8wH63VeHHgHr32p7wA0k" class="btn-order" target="_blank" rel="noopener noreferrer">Order &amp; Pay</a>
+        </div>
+      </div>
+
+      <div class="supp-card reveal" data-brand="viridian">
+        <div class="supp-img-wrap">
+          <img src="https://files.stripe.com/links/MDB8YWNjdF8xVGxDa2cwZTZaMDE0RG5qfGZsX2xpdmVfUjN5V3MzakJMVnpHenFiVkNBN0pUYTAz00lglv4Yys" alt="Zinc Citrate">
+          <div class="supp-desc-overlay">
+            <div class="supp-desc">Zinc Citrate is an easily absorbable form of this essential nutrient which contributes to normal operation of the immune system, normal skin, hair and nails, as well as bone strength and normal vision. 100% active ingredients formulated by expert nutritionists.</div>
+          </div>
+        </div>
+        <div class="supp-name">Zinc Citrate</div>
+        <div class="supp-meta">
+          <div class="supp-price">£8.75 <span>/ 30 caps</span></div>
+          <a href="https://buy.stripe.com/4gM00b1NFarr1MxbyV7wA0l" class="btn-order" target="_blank" rel="noopener noreferrer">Order &amp; Pay</a>
+        </div>
+      </div>
+
+      <div class="supp-card reveal" data-brand="viridian">
+        <div class="supp-img-wrap">
+          <img src="https://files.stripe.com/links/MDB8YWNjdF8xVGxDa2cwZTZaMDE0RG5qfGZsX2xpdmVfWnZUMGJycWhUR3BNcFg3UkRzdHBuT0VE00oLRHCzQO" alt="Vitamin K2 100μg">
+          <div class="supp-desc-overlay">
+            <div class="supp-desc">Vitamin K2 100μg provides a high potency dose of this easily utilised form in a vegan, non-animal tested supplement. Vitamin K contributes to normal blood clotting and the maintenance of normal bones. 100% active ingredients formulated by expert nutritionists.</div>
+          </div>
+        </div>
+        <div class="supp-name">Vitamin K2 100μg</div>
+        <div class="supp-meta">
+          <div class="supp-price">£25.95 <span>/ 60 caps</span></div>
+          <a href="https://buy.stripe.com/6oU3cnbofgPPdvf7iF7wA0m" class="btn-order" target="_blank" rel="noopener noreferrer">Order &amp; Pay</a>
+        </div>
+      </div>
+
+      <div class="supp-card reveal" data-brand="viridian">
+        <div class="supp-img-wrap">
+          <img src="https://files.stripe.com/links/MDB8YWNjdF8xVGxDa2cwZTZaMDE0RG5qfGZsX2xpdmVfamlVVTlNemtmUTFQcnZsbnpqeEZ0VkdN00o31GkKDh" alt="Vitamin D3 1000iu">
+          <div class="supp-desc-overlay">
+            <div class="supp-desc">Vitamin D3 1000IU provides vitamin D in a potent and easily utilised form. Vitamin D contributes to normal bones, teeth and immunity. This vegan form of vitamin D is plant sourced from lichen. 100% active ingredients formulated by expert nutritionists</div>
+          </div>
+        </div>
+        <div class="supp-name">Vitamin D3 1000iu</div>
+        <div class="supp-meta">
+          <div class="supp-price">£7.95 <span>/ 30 caps</span></div>
+          <a href="https://buy.stripe.com/fZubIT77Z2YZ2QB0Uh7wA0n" class="btn-order" target="_blank" rel="noopener noreferrer">Order &amp; Pay</a>
+        </div>
+      </div>
+
+      <div class="supp-card reveal" data-brand="viridian">
+        <div class="supp-img-wrap">
+          <img src="https://files.stripe.com/links/MDB8YWNjdF8xVGxDa2cwZTZaMDE0RG5qfGZsX2xpdmVfRXptSHppRzZrME5TQ3M3YnRieDlYMldG00N2Stm8fV" alt="ViridiKid Multivitamin">
+          <div class="supp-desc-overlay">
+            <div class="supp-desc">Viridikid Multivitamin is a pure formulation, with no added nasties, especially for kids aged two and over. Tiny capsules are easy to swallow. Combine with Viridikid omega oil for essential fatty acids. 100% active ingredients formulated by expert nutritionists</div>
+          </div>
+        </div>
+        <div class="supp-name">ViridiKid Multivitamin</div>
+        <div class="supp-meta">
+          <div class="supp-price">£19.95 <span>/ 90 caps</span></div>
+          <a href="https://buy.stripe.com/8x2dR14ZRgPP0It7iF7wA0o" class="btn-order" target="_blank" rel="noopener noreferrer">Order &amp; Pay</a>
+        </div>
+      </div>
+
+      <div class="supp-card reveal" data-brand="viridian">
+        <div class="supp-img-wrap">
+          <img src="https://files.stripe.com/links/MDB8YWNjdF8xVGxDa2cwZTZaMDE0RG5qfGZsX2xpdmVfVXBjaXc4NEJ6bGh3c0E1cmFFWDg0QWRN00gQT4JNa5" alt="Synerbio ProCare">
+          <div class="supp-desc-overlay">
+            <div class="supp-desc">Synerbio ProCare is a blend of four strains of well researched friendly bacteria. Includes the strongest and most clinically effective strains to provide 12.5 billion bacteria in each capsule. 100% active ingredients formulated by expert nutritionists</div>
+          </div>
+        </div>
+        <div class="supp-name">Synerbio ProCare</div>
+        <div class="supp-meta">
+          <div class="supp-price">£26.95 <span>/ 30 caps</span></div>
+          <a href="https://buy.stripe.com/28EaEPbof433bn75ax7wA0p" class="btn-order" target="_blank" rel="noopener noreferrer">Order &amp; Pay</a>
+        </div>
+      </div>
+
+      <div class="supp-card reveal" data-brand="viridian">
+        <div class="supp-img-wrap">
+          <img src="https://files.stripe.com/links/MDB8YWNjdF8xVGxDa2cwZTZaMDE0RG5qfGZsX2xpdmVfNlR4eEhzTFc3OHlTc3luMHVJVkxVa0dU00ck0N4Yd5" alt="Synerbio Daily">
+          <div class="supp-desc-overlay">
+            <div class="supp-desc">Synerbio Daily is a targeted formulation of friendly bacteria, with added fibre to support gut flora. Provides 1.5 billion bacteria per capsule. 100% active ingredients formulated by expert nutritionists.</div>
+          </div>
+        </div>
+        <div class="supp-name">Synerbio Daily</div>
+        <div class="supp-meta">
+          <div class="supp-price">£27.25 <span>/ 90 caps</span></div>
+          <a href="https://buy.stripe.com/6oUfZ9bofarr76RauR7wA0q" class="btn-order" target="_blank" rel="noopener noreferrer">Order &amp; Pay</a>
+        </div>
+      </div>
+
+      <div class="supp-card reveal" data-brand="viridian">
+        <div class="supp-img-wrap">
+          <img src="https://files.stripe.com/links/MDB8YWNjdF8xVGxDa2cwZTZaMDE0RG5qfGZsX2xpdmVfU3BIM2EzNGNkUHpxS2RQME1TWmxlS2Vx00fSu6b5u5" alt="Synerbio Daily">
+          <div class="supp-desc-overlay">
+            <div class="supp-desc">Synerbio Daily is a targeted formulation of friendly bacteria, with added fibre to support gut flora. Provides 1.5 billion bacteria per capsule. 100% active ingredients formulated by expert nutritionists.</div>
+          </div>
+        </div>
+        <div class="supp-name">Synerbio Daily</div>
+        <div class="supp-meta">
+          <div class="supp-price">£10.95 <span>/ 30 caps</span></div>
+          <a href="https://buy.stripe.com/28EaEPbofbvvgHr1Yl7wA0r" class="btn-order" target="_blank" rel="noopener noreferrer">Order &amp; Pay</a>
+        </div>
+      </div>
+
+      <div class="supp-card reveal" data-brand="viridian">
+        <div class="supp-img-wrap">
+          <img src="https://files.stripe.com/links/MDB8YWNjdF8xVGxDa2cwZTZaMDE0RG5qfGZsX2xpdmVfUWFYUm1KclI3RElxVzJaS2h0cnRKSXdl00CIB11cdo" alt="Saw Palmetto Extract">
+          <div class="supp-desc-overlay">
+            <div class="supp-desc">Saw Palmetto Extract is a well known herb to support men's health. Naturally rich in flavonoids and standardised to 45-50% essential fatty acids and sterols to ensure a consistently effective level of active ingredient inside every capsule. 100% active ingredients formulated by expert nutritionists.</div>
+          </div>
+        </div>
+        <div class="supp-name">Saw Palmetto Extract</div>
+        <div class="supp-meta">
+          <div class="supp-price">£11.95 <span>/ 30 caps</span></div>
+          <a href="https://buy.stripe.com/bJefZ977Z0QRaj35ax7wA0s" class="btn-order" target="_blank" rel="noopener noreferrer">Order &amp; Pay</a>
+        </div>
+      </div>
+
+      <div class="supp-card reveal" data-brand="viridian">
+        <div class="supp-img-wrap">
+          <img src="https://files.stripe.com/links/MDB8YWNjdF8xVGxDa2cwZTZaMDE0RG5qfGZsX2xpdmVfa1lJVXBJSVdsU281Z3RFcUo0UnVHa0tn00ZQmg3oPt" alt="Organic Turmeric 400mg">
+          <div class="supp-desc-overlay">
+            <div class="supp-desc">Organic Turmeric capsules contain 400mg of sustainably sourced root. This revered spice has a long history of use to support a number of body functions. 100% active ingredients formulated by expert nutritionists.</div>
+          </div>
+        </div>
+        <div class="supp-name">Organic Turmeric 400mg</div>
+        <div class="supp-meta">
+          <div class="supp-price">£22.20 <span>/ 90 caps</span></div>
+          <a href="https://buy.stripe.com/fZu9AL8c31UVfDn1Yl7wA0t" class="btn-order" target="_blank" rel="noopener noreferrer">Order &amp; Pay</a>
+        </div>
+      </div>
+
+      <div class="supp-card reveal" data-brand="viridian">
+        <div class="supp-img-wrap">
+          <img src="https://files.stripe.com/links/MDB8YWNjdF8xVGxDa2cwZTZaMDE0RG5qfGZsX2xpdmVfdGE3MWhxa3EyVGR2RlVLaURpalNJMVNH00xpcXKBQT" alt="Organic Turmeric 400mg">
+          <div class="supp-desc-overlay">
+            <div class="supp-desc">Organic Turmeric capsules contain 400mg of sustainably sourced root. This revered spice has a long history of use to support a number of body functions. 100% active ingredients formulated by expert nutritionists.</div>
+          </div>
+        </div>
+        <div class="supp-name">Organic Turmeric 400mg</div>
+        <div class="supp-meta">
+          <div class="supp-price">£9.50 <span>/ 30 caps</span></div>
+          <a href="https://buy.stripe.com/5kQeV5akbdDD0It5ax7wA0u" class="btn-order" target="_blank" rel="noopener noreferrer">Order &amp; Pay</a>
+        </div>
+      </div>
+
+      <div class="supp-card reveal" data-brand="viridian">
+        <div class="supp-img-wrap">
+          <img src="https://files.stripe.com/links/MDB8YWNjdF8xVGxDa2cwZTZaMDE0RG5qfGZsX2xpdmVfUm5iTGRSZ2wzMm1IbEMyWFpIUmJnejFw00lMTPUnhP" alt="Organic Lion's Mane Extract">
+          <div class="supp-desc-overlay">
+            <div class="supp-desc">Organic Lion's Mane Extract is grown organically in FinIand. The extract comes from the fruiting bodies which contain the actives. Ultrasound breaks down the chitin cell walls to increase bioavailability. 100% active ingredients formulated by qualified nutritionists.</div>
+          </div>
+        </div>
+        <div class="supp-name">Organic Lion's Mane Extract</div>
+        <div class="supp-meta">
+          <div class="supp-price">£25.95 <span>/ 30 caps</span></div>
+          <a href="https://buy.stripe.com/fZu6ozfEvgPP2QB7iF7wA0v" class="btn-order" target="_blank" rel="noopener noreferrer">Order &amp; Pay</a>
+        </div>
+      </div>
+
+      <div class="supp-card reveal" data-brand="viridian">
+        <div class="supp-img-wrap">
+          <img src="https://files.stripe.com/links/MDB8YWNjdF8xVGxDa2cwZTZaMDE0RG5qfGZsX2xpdmVfY2NvRXJhNnJyTmZWd1gyZFFoc0h3TWZM00g0xkY3Gn" alt="Organic Flaxseed Oil">
+          <div class="supp-desc-overlay">
+            <div class="supp-desc">Organic Flaxseed Omega Oil is made from 100% pure flaxseed (linseed), nothing else is added. Naturally high in omega 3 this is a perfect vegan alternative to obtain the essential omega oils. Recommended to take alongside High Five Multivitamin. First cold pressed, solvent free and nitrogen sealed for freshness. 100% active ingredients formulated by expert nutritionists</div>
+          </div>
+        </div>
+        <div class="supp-name">Organic Flaxseed Oil</div>
+        <div class="supp-meta">
+          <div class="supp-price">£11.50 <span>/ 200 mL</span></div>
+          <a href="https://buy.stripe.com/6oUdR10JB433aj3eL77wA0w" class="btn-order" target="_blank" rel="noopener noreferrer">Order &amp; Pay</a>
+        </div>
+      </div>
+
+      <div class="supp-card reveal" data-brand="viridian">
+        <div class="supp-img-wrap">
+          <img src="https://files.stripe.com/links/MDB8YWNjdF8xVGxDa2cwZTZaMDE0RG5qfGZsX2xpdmVfWFdWZ1o2M2dNQXNid3dWbUdmV01ZVVpD000csqpZmh" alt="Organic Echinacea Tincture">
+          <div class="supp-desc-overlay">
+            <div class="supp-desc">Organic Echinacea Tincture is made with the whole fresh plant, grown, produced and bottled on an organic farm in England. This high potency formula provides the equivalent of 480mg of fresh herb per 1ml. 100% active ingredients with with no artificial fillers and no nasties</div>
+          </div>
+        </div>
+        <div class="supp-name">Organic Echinacea Tincture</div>
+        <div class="supp-meta">
+          <div class="supp-price">£11.95 <span>/ 50 mL</span></div>
+          <a href="https://buy.stripe.com/9B6fZ90JBeHHezjeL77wA0x" class="btn-order" target="_blank" rel="noopener noreferrer">Order &amp; Pay</a>
+        </div>
+      </div>
+
+      <div class="supp-card reveal" data-brand="viridian">
+        <div class="supp-img-wrap">
+          <img src="https://files.stripe.com/links/MDB8YWNjdF8xVGxDa2cwZTZaMDE0RG5qfGZsX2xpdmVfR242N3ZCRnUyaHNFQjdJWGtaNjZRd1VW00BeZFsxHt" alt="Organic B12">
+          <div class="supp-desc-overlay">
+            <div class="supp-desc">Sourced from organic shiitake mushrooms, freeze dried to lock in nutrients. Provides a complete form of mixed cobalamins and harvested without the use of pesticides or harsh chemicals. Vitamin B12 is an essential water-soluble nutrient which is proven to contribute to the reduction tiredness and fatigue.</div>
+          </div>
+        </div>
+        <div class="supp-name">Organic B12</div>
+        <div class="supp-meta">
+          <div class="supp-price">£20.25 <span>/ 30 caps</span></div>
+          <a href="https://buy.stripe.com/dRm5kv3VNgPPezj0Uh7wA0y" class="btn-order" target="_blank" rel="noopener noreferrer">Order &amp; Pay</a>
+        </div>
+      </div>
+
+      <div class="supp-card reveal" data-brand="viridian">
+        <div class="supp-img-wrap">
+          <img src="https://files.stripe.com/links/MDB8YWNjdF8xVGxDa2cwZTZaMDE0RG5qfGZsX2xpdmVfV2sxQU0zclFsR2NmWE5NMVU5cVE1NW4x009Eo7tPx0" alt="Organic Ashwagandha">
+          <div class="supp-desc-overlay">
+            <div class="supp-desc">Organic Ashwagandha Extract improves the body’s resistance to stress. This vegan, high potency, full spectrum extract is grown in India, and is the most clinically studied form of ashwagandha. 100% active ingredients formulated by expert nutritionists.</div>
+          </div>
+        </div>
+        <div class="supp-name">Organic Ashwagandha</div>
+        <div class="supp-meta">
+          <div class="supp-price">£24.95 <span>/ 60 caps</span></div>
+          <a href="https://buy.stripe.com/4gM9ALeAr577crb0Uh7wA0z" class="btn-order" target="_blank" rel="noopener noreferrer">Order &amp; Pay</a>
+        </div>
+      </div>
+
+      <div class="supp-card reveal" data-brand="viridian">
+        <div class="supp-img-wrap">
+          <img src="https://files.stripe.com/links/MDB8YWNjdF8xVGxDa2cwZTZaMDE0RG5qfGZsX2xpdmVfNVNrcEk2SjJNZmRpczM0MlFaaWkwUW9p00tMvn8wm2" alt="Organic Milk Thistle 400mg">
+          <div class="supp-desc-overlay">
+            <div class="supp-desc">Organic Milk Thistle capsules contain 400mg of the milled seed in a powder form. Milk thistle is a popular and well known herb. 100% active ingredients formulated by expert nutritionists.</div>
+          </div>
+        </div>
+        <div class="supp-name">Organic Milk Thistle 400mg</div>
+        <div class="supp-meta">
+          <div class="supp-price">£10.95 <span>/ 30 caps</span></div>
+          <a href="https://buy.stripe.com/7sY9AL0JBarr62NauR7wA0A" class="btn-order" target="_blank" rel="noopener noreferrer">Order &amp; Pay</a>
+        </div>
+      </div>
+
+      <div class="supp-card reveal" data-brand="viridian">
+        <div class="supp-img-wrap">
+          <img src="https://files.stripe.com/links/MDB8YWNjdF8xVGxDa2cwZTZaMDE0RG5qfGZsX2xpdmVfV2R1TW9wazFnZ0JabFlteUVFSDNLbkZS00P5R8fOHO" alt="Magnesium Citrate">
+          <div class="supp-desc-overlay">
+            <div class="supp-desc">Magnesium Citrate is a well absorbed form of magnesium, providing 120mg of elemental magnesium per capsule. This essential mineral is involved in over 300 enzyme processes and is often named the ‘spark of life’.</div>
+          </div>
+        </div>
+        <div class="supp-name">Magnesium Citrate</div>
+        <div class="supp-meta">
+          <div class="supp-price">£23.70 <span>/ 120 caps</span></div>
+          <a href="https://buy.stripe.com/7sY3cn1NF7ffcrbeL77wA0B" class="btn-order" target="_blank" rel="noopener noreferrer">Order &amp; Pay</a>
+        </div>
+      </div>
+
+      <div class="supp-card reveal" data-brand="viridian">
+        <div class="supp-img-wrap">
+          <img src="https://files.stripe.com/links/MDB8YWNjdF8xVGxDa2cwZTZaMDE0RG5qfGZsX2xpdmVfT3VNM2JpNkdjalJXYlBsbG82V1h6RTZ600kWmRTd6V" alt="Magnesium Citrate">
+          <div class="supp-desc-overlay">
+            <div class="supp-desc">Magnesium Citrate is a well absorbed form of magnesium, providing 120mg of elemental magnesium per capsule. This essential mineral is involved in over 300 enzyme processes and is often named the ‘spark of life’.</div>
+          </div>
+        </div>
+        <div class="supp-name">Magnesium Citrate</div>
+        <div class="supp-meta">
+          <div class="supp-price">£16.50 <span>/ 60 caps</span></div>
+          <a href="https://buy.stripe.com/7sY8wH63VgPP3UFfPb7wA0C" class="btn-order" target="_blank" rel="noopener noreferrer">Order &amp; Pay</a>
+        </div>
+      </div>
+
+      <div class="supp-card reveal" data-brand="viridian">
+        <div class="supp-img-wrap">
+          <img src="https://files.stripe.com/links/MDB8YWNjdF8xVGxDa2cwZTZaMDE0RG5qfGZsX2xpdmVfNjcwRDh2ZUpZOWtxUmxMRVRFaWtBZzZL00HIziEdT7" alt="Horseradish and Garlic Complex">
+          <div class="supp-desc-overlay">
+            <div class="supp-desc">Horseradish & Garlic Complex includes raw forms of these botanicals formulated alongside vitamin C and zinc to support normal function of the immune system. 100% active ingredients formulated by expert nutritionists</div>
+          </div>
+        </div>
+        <div class="supp-name">Horseradish and Garlic Complex</div>
+        <div class="supp-meta">
+          <div class="supp-price">£29.20 <span>/ 90 caps</span></div>
+          <a href="https://buy.stripe.com/5kQ8wH2RJ7ffdvf7iF7wA0D" class="btn-order" target="_blank" rel="noopener noreferrer">Order &amp; Pay</a>
+        </div>
+      </div>
+
+      <div class="supp-card reveal" data-brand="viridian">
+        <div class="supp-img-wrap">
+          <img src="https://files.stripe.com/links/MDB8YWNjdF8xVGxDa2cwZTZaMDE0RG5qfGZsX2xpdmVfdFNEUVV3ZmJ5Sk10cDlxbHowdnhSWVBh00tPcr7eRO" alt="High Twelve B - Complex">
+          <div class="supp-desc-overlay">
+            <div class="supp-desc">High Twelve B12 Complex is a combination of all the B vitamins. Particularly high in B12 with two essential forms to support different processes in the body. Ideal support for a plant based diet. 100% active ingredients formulated by expert nutritionists</div>
+          </div>
+        </div>
+        <div class="supp-name">High Twelve B - Complex</div>
+        <div class="supp-meta">
+          <div class="supp-price">£20.80 <span>/ 90 caps</span></div>
+          <a href="https://buy.stripe.com/14A4grdwn8jj62NgTf7wA0E" class="btn-order" target="_blank" rel="noopener noreferrer">Order &amp; Pay</a>
+        </div>
+      </div>
+
+      <div class="supp-card reveal" data-brand="viridian">
+        <div class="supp-img-wrap">
+          <img src="https://files.stripe.com/links/MDB8YWNjdF8xVGxDa2cwZTZaMDE0RG5qfGZsX2xpdmVfVWlPMVdmVENQUERZWW1iZ0N5OEpOc3lG003peQ6iuT" alt="High Twelve B - Complex">
+          <div class="supp-desc-overlay">
+            <div class="supp-desc">High Twelve B12 Complex is a combination of all the B vitamins. Particularly high in B12 with two essential forms to support different processes in the body. Ideal support for a plant based diet. 100% active ingredients formulated by expert nutritionists</div>
+          </div>
+        </div>
+        <div class="supp-name">High Twelve B - Complex</div>
+        <div class="supp-meta">
+          <div class="supp-price">£9.15 <span>/ 30 caps</span></div>
+          <a href="https://buy.stripe.com/aFa00b0JB6bbcrbfPb7wA0F" class="btn-order" target="_blank" rel="noopener noreferrer">Order &amp; Pay</a>
+        </div>
+      </div>
+
+      <div class="supp-card reveal" data-brand="viridian">
+        <div class="supp-img-wrap">
+          <img src="https://files.stripe.com/links/MDB8YWNjdF8xVGxDa2cwZTZaMDE0RG5qfGZsX2xpdmVfWDFWSHpsT3U3RUphRFNUYVBpbDNyblJo00pPQXfg1m" alt="Viridian - High Six B - Complex">
+          <div class="supp-desc-overlay">
+            <div class="supp-desc">High Six B6 Complex is a combination of all the B vitamins and is particularly high in B6 which contributes to the regulation of hormonal activity. 100% active ingredients formulated by expert nutritionists</div>
+          </div>
+        </div>
+        <div class="supp-name">Viridian - High Six B - Complex</div>
+        <div class="supp-meta">
+          <div class="supp-price">£22.10 <span>/ 90 caps</span></div>
+          <a href="https://buy.stripe.com/bJedR163VfLLfDnauR7wA0G" class="btn-order" target="_blank" rel="noopener noreferrer">Order &amp; Pay</a>
+        </div>
+      </div>
+
+      <div class="supp-card reveal" data-brand="viridian">
+        <div class="supp-img-wrap">
+          <img src="https://files.stripe.com/links/MDB8YWNjdF8xVGxDa2cwZTZaMDE0RG5qfGZsX2xpdmVfSTNLOEhOeXpvWDh3YU5TaFlyS2ROa2NO00KQd8j5xh" alt="High Six B - Complex">
+          <div class="supp-desc-overlay">
+            <div class="supp-desc">High Six B6 Complex is a combination of all the B vitamins and is particularly high in B6 which contributes to the regulation of hormonal activity. 100% active ingredients formulated by expert nutritionists</div>
+          </div>
+        </div>
+        <div class="supp-name">High Six B - Complex</div>
+        <div class="supp-meta">
+          <div class="supp-price">£9.35 <span>/ 30 caps</span></div>
+          <a href="https://buy.stripe.com/cNi5kvgIz8jj9eZ5ax7wA0H" class="btn-order" target="_blank" rel="noopener noreferrer">Order &amp; Pay</a>
+        </div>
+      </div>
+
+      <div class="supp-card reveal" data-brand="viridian">
+        <div class="supp-img-wrap">
+          <img src="https://files.stripe.com/links/MDB8YWNjdF8xVGxDa2cwZTZaMDE0RG5qfGZsX2xpdmVfOU44N095WGZYbkg0aHlpbW5ydnc0dVBu003fntCppf" alt="High Potency Vitamin B12">
+          <div class="supp-desc-overlay">
+            <div class="supp-desc">High Potency B12 is made using natural fermentation and provides active vitamin B12 as two essential forms. Vitamin B12 contributes to normal red blood cell formation and is ideal support for a plant based diet. 100% active ingredients formulated by expert nutritionists</div>
+          </div>
+        </div>
+        <div class="supp-name">High Potency Vitamin B12</div>
+        <div class="supp-meta">
+          <div class="supp-price">£13.75 <span>/ 60 caps</span></div>
+          <a href="https://buy.stripe.com/14AaEPeAr7ff3UF0Uh7wA0I" class="btn-order" target="_blank" rel="noopener noreferrer">Order &amp; Pay</a>
+        </div>
+      </div>
+
+      <div class="supp-card reveal" data-brand="viridian">
+        <div class="supp-img-wrap">
+          <img src="https://files.stripe.com/links/MDB8YWNjdF8xVGxDa2cwZTZaMDE0RG5qfGZsX2xpdmVfNU5sMDA3SlNWaG1KQnFkZVhucjF2ZkZZ00P3Ke8rvF" alt="High Potency Magnesium Bisglycinate">
+          <div class="supp-desc-overlay">
+            <div class="supp-desc">Pure and fully reacted, this maximum potency magnesium bisglycinate delivers 200mg of elemental magnesium per dose. The magnesium is bound to glycine to support optimal absorption and no other forms of magnesium are present. Two capsules deliver a total of 1668mg magnesium and glycine combined.</div>
+          </div>
+        </div>
+        <div class="supp-name">High Potency Magnesium Bisglycinate</div>
+        <div class="supp-meta">
+          <div class="supp-price">£28.05 <span>/ 120 caps</span></div>
+          <a href="https://buy.stripe.com/5kQ7sDakb9nn62N32p7wA0J" class="btn-order" target="_blank" rel="noopener noreferrer">Order &amp; Pay</a>
+        </div>
+      </div>
+
+      <div class="supp-card reveal" data-brand="viridian">
+        <div class="supp-img-wrap">
+          <img src="https://files.stripe.com/links/MDB8YWNjdF8xVGxDa2cwZTZaMDE0RG5qfGZsX2xpdmVfbVBKeWhpM1p0cDhuaGo1WFFYMHBYTFZk00OQcV0ABW" alt="High Potency Magnesium Bisglycinate">
+          <div class="supp-desc-overlay">
+            <div class="supp-desc">Pure and fully reacted, this maximum potency magnesium bisglycinate delivers 200mg of elemental magnesium per dose. The magnesium is bound to glycine to support optimal absorption and no other forms of magnesium are present. Two capsules deliver a total of 1668mg magnesium and glycine combined.</div>
+          </div>
+        </div>
+        <div class="supp-name">High Potency Magnesium Bisglycinate</div>
+        <div class="supp-meta">
+          <div class="supp-price">£16.05 <span>/ 60 caps</span></div>
+          <a href="https://buy.stripe.com/5kQbIT63VdDD9eZ32p7wA0K" class="btn-order" target="_blank" rel="noopener noreferrer">Order &amp; Pay</a>
+        </div>
+      </div>
+
+      <div class="supp-card reveal" data-brand="viridian">
+        <div class="supp-img-wrap">
+          <img src="https://files.stripe.com/links/MDB8YWNjdF8xVGxDa2cwZTZaMDE0RG5qfGZsX2xpdmVfZzFoSVhITzJwMHNHR0lDRnptRTdFYzFX00rQnSX2Te" alt="High Potency Magnesium">
+          <div class="supp-desc-overlay">
+            <div class="supp-desc">High Potency Magnesium is provided in three different forms to deliver the most effective high strength and bioavailable dose. This essential mineral is involved in over 300 enzyme processes in the body and is often named the ‘spark of life’. 100% active ingredients formulated by expert nutritionists.</div>
+          </div>
+        </div>
+        <div class="supp-name">High Potency Magnesium</div>
+        <div class="supp-meta">
+          <div class="supp-price">£22.80 <span>/ 120 caps</span></div>
+          <a href="https://buy.stripe.com/4gMfZ90JBczz76R1Yl7wA0L" class="btn-order" target="_blank" rel="noopener noreferrer">Order &amp; Pay</a>
+        </div>
+      </div>
+
+      <div class="supp-card reveal" data-brand="viridian">
+        <div class="supp-img-wrap">
+          <img src="https://files.stripe.com/links/MDB8YWNjdF8xVGxDa2cwZTZaMDE0RG5qfGZsX2xpdmVfTnplTGlYckVKcHNpWFVZRGY0OUg5N3pU00Yrr6JcoI" alt="High Potency Magnesium">
+          <div class="supp-desc-overlay">
+            <div class="supp-desc">High Potency Magnesium is provided in three different forms to deliver the most effective high strength and bioavailable dose. This essential mineral is involved in over 300 enzyme processes in the body and is often named the ‘spark of life’. 100% active ingredients formulated by expert nutritionists.</div>
+          </div>
+        </div>
+        <div class="supp-name">High Potency Magnesium</div>
+        <div class="supp-meta">
+          <div class="supp-price">£11.55 <span>/ 30 caps</span></div>
+          <a href="https://buy.stripe.com/28E7sDakb4338aVeL77wA0M" class="btn-order" target="_blank" rel="noopener noreferrer">Order &amp; Pay</a>
+        </div>
+      </div>
+
+      <div class="supp-card reveal" data-brand="pharma-nord">
+        <div class="supp-img-wrap">
+          <img src="https://files.stripe.com/links/MDB8YWNjdF8xVGxDa2cwZTZaMDE0RG5qfGZsX2xpdmVfS1lvU1hZZlFOMjFYQmMweU1JSTFrYUpU00hs936hDB" alt="Bio - Glucosamine">
+          <div class="supp-desc-overlay">
+            <div class="supp-desc">Combination supplement containing glucosamine sulphate and chondroitin sulphate, and vitamin C for the maintenance of healthy joints.</div>
+          </div>
+        </div>
+        <div class="supp-name">Bio - Glucosamine</div>
+        <div class="supp-meta">
+          <div class="supp-price">£10.55 <span>/ 60 tabs</span></div>
+          <a href="https://buy.stripe.com/eVq28j77Z1UV9eZ32p7wA0N" class="btn-order" target="_blank" rel="noopener noreferrer">Order &amp; Pay</a>
+        </div>
+      </div>
+
+      <div class="supp-card reveal" data-brand="pharma-nord">
+        <div class="supp-img-wrap">
+          <img src="https://files.stripe.com/links/MDB8YWNjdF8xVGxDa2cwZTZaMDE0RG5qfGZsX2xpdmVfeGlDTVBFeGlrQjNpYVdjSW9rbzcyaHNZ00ExJehSFO" alt="StatiQinon">
+          <div class="supp-desc-overlay">
+            <div class="supp-desc">StatiQinon from Pharma Nord contains co-enzyme Q10, red yeast rice, and ALA (alpha-linolenic acid).</div>
+          </div>
+        </div>
+        <div class="supp-name">StatiQinon</div>
+        <div class="supp-meta">
+          <div class="supp-price">£21.25 <span>/ 60 caps</span></div>
+          <a href="https://buy.stripe.com/cNi3cn77Z6bbaj3gTf7wA0O" class="btn-order" target="_blank" rel="noopener noreferrer">Order &amp; Pay</a>
+        </div>
+      </div>
+
+      <div class="supp-card reveal" data-brand="pharma-nord">
+        <div class="supp-img-wrap">
+          <img src="https://files.stripe.com/links/MDB8YWNjdF8xVGxDa2cwZTZaMDE0RG5qfGZsX2xpdmVfM3Z1a1VkeU5KUE80TTZ3RjdRZGRoYTFa00g5FOx7RF" alt="Omega 7 Sea Buckthorn Oil">
+          <div class="supp-desc-overlay">
+            <div class="supp-desc">Omega 7 is a nutritional supplement that is produced using the berry and seed of the Sea buckthorn plant. This shrub, originating from the Himalayas, is rich in Omega 7 fatty acid, including palmitoleic acid and vaccenic acid. The vitamin A that is found in Omega 7 contributes to the maintenance of normal skin, vision and mucous membranes.</div>
+          </div>
+        </div>
+        <div class="supp-name">Omega 7 Sea Buckthorn Oil</div>
+        <div class="supp-meta">
+          <div class="supp-price">£22.95 <span>/ 60 caps</span></div>
+          <a href="https://buy.stripe.com/6oUaEP3VN577dvfbyV7wA0P" class="btn-order" target="_blank" rel="noopener noreferrer">Order &amp; Pay</a>
+        </div>
+      </div>
+
+      <div class="supp-card reveal" data-brand="pharma-nord">
+        <div class="supp-img-wrap">
+          <img src="https://files.stripe.com/links/MDB8YWNjdF8xVGxDa2cwZTZaMDE0RG5qfGZsX2xpdmVfUmJRNncwVnVQbmVqY2tKRkNYWkwzUUtw00DUuxqydV" alt="Iodine 400ug">
+          <div class="supp-desc-overlay">
+            <div class="supp-desc">Optimum iodine status is essential for our metabolism, which governs many processes in the body, including energy-producing metabolism. Iodine also contributes to cognitive functions, nervous function and skin.</div>
+          </div>
+        </div>
+        <div class="supp-name">Iodine 400ug</div>
+        <div class="supp-meta">
+          <div class="supp-price">£15.95 <span>/ 120 tabs</span></div>
+          <a href="https://buy.stripe.com/4gM7sD77Zarrezj7iF7wA0Q" class="btn-order" target="_blank" rel="noopener noreferrer">Order &amp; Pay</a>
+        </div>
+      </div>
+
+      <div class="supp-card reveal" data-brand="pharma-nord">
+        <div class="supp-img-wrap">
+          <img src="https://files.stripe.com/links/MDB8YWNjdF8xVGxDa2cwZTZaMDE0RG5qfGZsX2xpdmVfS3BXUlg0cnlKYW1HYURNc3FUV3BEZTBz00RHT6fgkc" alt="D - Pearls 4000 IU (100ug)">
+          <div class="supp-desc-overlay">
+            <div class="supp-desc">Good for the Immune system, bones, teeth and muscles. Bio-Vitamin D3 is manufactured to pharmaceutical standards. Easy to swallow and highly bioavailable. Vitamin D3 dissolves in cold-pressed olive oil for maximum absorption. Contains a form of vitamin D (cholecalciferol) naturally produced in the skin</div>
+          </div>
+        </div>
+        <div class="supp-name">D - Pearls 4000 IU (100ug)</div>
+        <div class="supp-meta">
+          <div class="supp-price">£12.95 <span>/ 90 tabs</span></div>
+          <a href="https://buy.stripe.com/aFa6oz1NFczz9eZ5ax7wA0R" class="btn-order" target="_blank" rel="noopener noreferrer">Order &amp; Pay</a>
+        </div>
+      </div>
+
+      <div class="supp-card reveal" data-brand="pharma-nord">
+        <div class="supp-img-wrap">
+          <img src="https://files.stripe.com/links/MDB8YWNjdF8xVGxDa2cwZTZaMDE0RG5qfGZsX2xpdmVfNlZBYThNV2hyUTFESFRsSVM5TndDWGU300cZiNIygQ" alt="D - Pearls 3000 IU (75ug)">
+          <div class="supp-desc-overlay">
+            <div class="supp-desc">Strong edition of D-Pearls with 75 µg (3,000 IU) of vitamin D3 in cold-pressed olive oil</div>
+          </div>
+        </div>
+        <div class="supp-name">D - Pearls 3000 IU (75ug)</div>
+        <div class="supp-meta">
+          <div class="supp-price">£16.45 <span>/ 90 tabs</span></div>
+          <a href="https://buy.stripe.com/eVq6ozeArarr1MxeL77wA0S" class="btn-order" target="_blank" rel="noopener noreferrer">Order &amp; Pay</a>
+        </div>
+      </div>
+
+      <div class="supp-card reveal" data-brand="pharma-nord">
+        <div class="supp-img-wrap">
+          <img src="https://files.stripe.com/links/MDB8YWNjdF8xVGxDa2cwZTZaMDE0RG5qfGZsX2xpdmVfb0YydXhVRXE3VEYyTVFPTG9sYXF0N0pq00G7ycBlyO" alt="D - Pearls 1000 IU (25ug)">
+          <div class="supp-desc-overlay">
+            <div class="supp-desc">Good for the Immune system, bones, teeth and musclesBio-Vitamin D3 is manufactured to pharmaceutical standards. Easy to swallow and highly bioavailable. Vitamin D3 dissolves in cold-pressed olive oil for maximum absorption. Contains a form of vitamin D (cholecalciferol) naturally produced in the skin</div>
+          </div>
+        </div>
+        <div class="supp-name">D - Pearls 1000 IU (25ug)</div>
+        <div class="supp-meta">
+          <div class="supp-price">£8.25 <span>/ 90 tabs</span></div>
+          <a href="https://buy.stripe.com/6oUdR18c34333UF9qN7wA0T" class="btn-order" target="_blank" rel="noopener noreferrer">Order &amp; Pay</a>
+        </div>
+      </div>
+
+      <div class="supp-card reveal" data-brand="pharma-nord">
+        <div class="supp-img-wrap">
+          <img src="https://files.stripe.com/links/MDB8YWNjdF8xVGxDa2cwZTZaMDE0RG5qfGZsX2xpdmVfcmQ5OTlmRzFRU3NURkRCQXlCdmVGQzFC00WzGTIMaD" alt="Cholessin | Red Yeast Rice">
+          <div class="supp-desc-overlay">
+            <div class="supp-desc">Cholessin tablets each contain 83.3 mg of red yeast rice powder, and this strength has been tested and verified. All batches of Cholessin are screened for fungal and environmental toxins such as citrinin, aflatoxin, dioxins, and heavy metals.</div>
+          </div>
+        </div>
+        <div class="supp-name">Cholessin | Red Yeast Rice</div>
+        <div class="supp-meta">
+          <div class="supp-price">£22.95 <span>/ 120 tabs</span></div>
+          <a href="https://buy.stripe.com/aFa4grbof1UVfDn5ax7wA0U" class="btn-order" target="_blank" rel="noopener noreferrer">Order &amp; Pay</a>
+        </div>
+      </div>
+
+      <div class="supp-card reveal" data-brand="pharma-nord">
+        <div class="supp-img-wrap">
+          <img src="https://files.stripe.com/links/MDB8YWNjdF8xVGxDa2cwZTZaMDE0RG5qfGZsX2xpdmVfbTM1c1dvNE11V0RidnJ2ejFISHlFSzdm00eNvlEx9a" alt="Bio - Selenium+Zinc">
+          <div class="supp-desc-overlay">
+            <div class="supp-desc">Bio-Selenium + Zinc tablets from Pharma Nord are based on extensive antioxidant research. Selenium works synergistically with vitamins B6, C, and E, as well as with the mineral zinc, in contributing to the protection of body cells from oxidative stress.</div>
+          </div>
+        </div>
+        <div class="supp-name">Bio - Selenium+Zinc</div>
+        <div class="supp-meta">
+          <div class="supp-price">£13.95 <span>/ 90 tabs</span></div>
+          <a href="https://buy.stripe.com/eVq14f63V9nn3UF1Yl7wA0V" class="btn-order" target="_blank" rel="noopener noreferrer">Order &amp; Pay</a>
+        </div>
+      </div>
+
+      <div class="supp-card reveal" data-brand="pharma-nord">
+        <div class="supp-img-wrap">
+          <img src="https://files.stripe.com/links/MDB8YWNjdF8xVGxDa2cwZTZaMDE0RG5qfGZsX2xpdmVfYjVPQklDUmhETElzRUdCanVFZUw0bFNW00wny1k7vk" alt="Bio - Selenium+Zinc">
+          <div class="supp-desc-overlay">
+            <div class="supp-desc">Bio-Selenium + Zinc tablets from Pharma Nord are based on extensive antioxidant research. Selenium works synergistically with vitamins B6, C, and E, as well as with the mineral zinc, in contributing to the protection of body cells from oxidative stress.</div>
+          </div>
+        </div>
+        <div class="supp-name">Bio - Selenium+Zinc</div>
+        <div class="supp-meta">
+          <div class="supp-price">£5.25 <span>/ 30 tabs</span></div>
+          <a href="https://buy.stripe.com/3cIeV5csjfLL9eZ7iF7wA0W" class="btn-order" target="_blank" rel="noopener noreferrer">Order &amp; Pay</a>
+        </div>
+      </div>
+
+      <div class="supp-card reveal" data-brand="pharma-nord">
+        <div class="supp-img-wrap">
+          <img src="https://files.stripe.com/links/MDB8YWNjdF8xVGxDa2cwZTZaMDE0RG5qfGZsX2xpdmVfV3M5enFRRHVJS3dNTHk3MjNLbzlPVXND00jL4Wfoq8" alt="Bio - Quinone Q10 Gold">
+          <div class="supp-desc-overlay">
+            <div class="supp-desc">Bio-Quinone Active Q10 GOLD consists of soft gelatin capsules with 100 mg of Q10 in the form of active ubiquinone dissolved in oil. For several decades, this unique preparation has been the world's most widely used Q10 due to its patented delivery form and documented high absorbability.</div>
+          </div>
+        </div>
+        <div class="supp-name">Bio - Quinone Q10 Gold</div>
+        <div class="supp-meta">
+          <div class="supp-price">£84.50 <span>/ 150 caps</span></div>
+          <a href="https://buy.stripe.com/dRm00b9g74333UFfPb7wA0X" class="btn-order" target="_blank" rel="noopener noreferrer">Order &amp; Pay</a>
+        </div>
+      </div>
+
+      <div class="supp-card reveal" data-brand="pharma-nord">
+        <div class="supp-img-wrap">
+          <img src="https://files.stripe.com/links/MDB8YWNjdF8xVGxDa2cwZTZaMDE0RG5qfGZsX2xpdmVfZDBsMmVlWkwwUmFwbHJyZVhBaW5yUWZl00E6e3qOIr" alt="Bio - Quinone Q10 Gold">
+          <div class="supp-desc-overlay">
+            <div class="supp-desc">Bio-Quinone Active Q10 GOLD consists of soft gelatin capsules with 100 mg of Q10 in the form of active ubiquinone dissolved in oil. For several decades, this unique preparation has been the world's most widely used Q10 due to its patented delivery form and documented high absorbability.</div>
+          </div>
+        </div>
+        <div class="supp-name">Bio - Quinone Q10 Gold</div>
+        <div class="supp-meta">
+          <div class="supp-price">£42.25 <span>/ 60 caps</span></div>
+          <a href="https://buy.stripe.com/dRm5kv9g7gPP62N1Yl7wA0Y" class="btn-order" target="_blank" rel="noopener noreferrer">Order &amp; Pay</a>
+        </div>
+      </div>
+
+      <div class="supp-card reveal" data-brand="pharma-nord">
+        <div class="supp-img-wrap">
+          <img src="https://files.stripe.com/links/MDB8YWNjdF8xVGxDa2cwZTZaMDE0RG5qfGZsX2xpdmVfTk90Y2hvdnRvNXpINmdTZGljeHVUUEFy00mJWCeo1o" alt="Bio - Multi Vitamins and Minerals">
+          <div class="supp-desc-overlay">
+            <div class="supp-desc">Bio-Multi Vitamin and Mineral contains 18 different vitamins, minerals and micronutrients.</div>
+          </div>
+        </div>
+        <div class="supp-name">Bio - Multi Vitamins and Minerals</div>
+        <div class="supp-meta">
+          <div class="supp-price">£19.95 <span>/ 150 tabs</span></div>
+          <a href="https://buy.stripe.com/7sY6oz63V5772QB9qN7wA0Z" class="btn-order" target="_blank" rel="noopener noreferrer">Order &amp; Pay</a>
+        </div>
+      </div>
+
+      <div class="supp-card reveal" data-brand="pharma-nord">
+        <div class="supp-img-wrap">
+          <img src="https://files.stripe.com/links/MDB8YWNjdF8xVGxDa2cwZTZaMDE0RG5qfGZsX2xpdmVfb0U1dG13TDZTYjFIMVBKajRIaTRxN2RU0070IERbCB" alt="Bio - Multi Vitamins and Minerals">
+          <div class="supp-desc-overlay">
+            <div class="supp-desc">Bio-Multi Vitamin and Mineral contains 18 different vitamins, minerals and micronutrients.</div>
+          </div>
+        </div>
+        <div class="supp-name">Bio - Multi Vitamins and Minerals</div>
+        <div class="supp-meta">
+          <div class="supp-price">£9.95 <span>/ 60 tabs</span></div>
+          <a href="https://buy.stripe.com/14A7sD77ZdDDgHr7iF7wA10" class="btn-order" target="_blank" rel="noopener noreferrer">Order &amp; Pay</a>
+        </div>
+      </div>
+
+      <div class="supp-card reveal" data-brand="pharma-nord">
+        <div class="supp-img-wrap">
+          <img src="https://files.stripe.com/links/MDB8YWNjdF8xVGxDa2cwZTZaMDE0RG5qfGZsX2xpdmVfblh2SEo1ZndHbGgzSzdDc3dJTmhKN2d100YhD3JX5z" alt="Bio - Magnesium">
+          <div class="supp-desc-overlay">
+            <div class="supp-desc">Magnesium supplements from Pharma Nord contain a complex of three different Magnesium compounds: acetate, hydroxide and carbonate. This ensures good bioavailability and is gentle on the gut.</div>
+          </div>
+        </div>
+        <div class="supp-name">Bio - Magnesium</div>
+        <div class="supp-meta">
+          <div class="supp-price">£16.25 <span>/ 150 tablets</span></div>
+          <a href="https://buy.stripe.com/28E5kv4ZReHHaj3eL77wA11" class="btn-order" target="_blank" rel="noopener noreferrer">Order &amp; Pay</a>
+        </div>
+      </div>
+
+      <div class="supp-card reveal" data-brand="pharma-nord">
+        <div class="supp-img-wrap">
+          <img src="https://files.stripe.com/links/MDB8YWNjdF8xVGxDa2cwZTZaMDE0RG5qfGZsX2xpdmVfRFltTzZyVGVkcnpPaFZMNmFjMmFMNXVC00s5DkYZwA" alt="Bio - Magnesium">
+          <div class="supp-desc-overlay">
+            <div class="supp-desc">Magnesium supplements from Pharma Nord contain a complex of three different Magnesium compounds: acetate, hydroxide and carbonate. This ensures good bioavailability and is gentle on the gut.</div>
+          </div>
+        </div>
+        <div class="supp-name">Bio - Magnesium</div>
+        <div class="supp-meta">
+          <div class="supp-price">£8.95 <span>/ 60 tablets</span></div>
+          <a href="https://buy.stripe.com/dRm6ozdwngPP9eZ32p7wA12" class="btn-order" target="_blank" rel="noopener noreferrer">Order &amp; Pay</a>
+        </div>
+      </div>
+
+      <div class="supp-card reveal" data-brand="pharma-nord">
+        <div class="supp-img-wrap">
+          <img src="https://files.stripe.com/links/MDB8YWNjdF8xVGxDa2cwZTZaMDE0RG5qfGZsX2xpdmVfOTl1dHhFWDROZmEzdjZhYzNHV0JYTTA1004UVsCht0" alt="Bio - Fish Oil">
+          <div class="supp-desc-overlay">
+            <div class="supp-desc">Omega 3 Fish Oil supplements from Pharma Nord contain pure and natural fish oil in capsules made from fish gelatine. Omega 3 is important to normal immune system response and can also suppress the production of inflammatory substances. Fish oil contains omega-3 fatty acids EPA and DHA, which contributes to normal functioning of the heart*. DHA contributes to the maintenance of normal vision** and brain function**.</div>
+          </div>
+        </div>
+        <div class="supp-name">Bio - Fish Oil</div>
+        <div class="supp-meta">
+          <div class="supp-price">£18.95 <span>/ 240 caps</span></div>
+          <a href="https://buy.stripe.com/8x2bIT1NF6bb3UFcCZ7wA13" class="btn-order" target="_blank" rel="noopener noreferrer">Order &amp; Pay</a>
+        </div>
+      </div>
+
+      <div class="supp-card reveal" data-brand="pharma-nord">
+        <div class="supp-img-wrap">
+          <img src="https://files.stripe.com/links/MDB8YWNjdF8xVGxDa2cwZTZaMDE0RG5qfGZsX2xpdmVfNHFGbklqaUZITkRZaEFkV0dtME5wQ09y00pjciP4u3" alt="Bio - Fish Oil">
+          <div class="supp-desc-overlay">
+            <div class="supp-desc">Omega 3 Fish Oil supplements from Pharma Nord contain pure and natural fish oil in capsules made from fish gelatine. Omega 3 is important to normal immune system response and can also suppress the production of inflammatory substances. Fish oil contains omega-3 fatty acids EPA and DHA, which contributes to normal functioning of the heart. DHA contributes to the maintenance of normal vision and brain function</div>
+          </div>
+        </div>
+        <div class="supp-name">Bio - Fish Oil</div>
+        <div class="supp-meta">
+          <div class="supp-price">£13.65 <span>/ 120 caps</span></div>
+          <a href="https://buy.stripe.com/eVq9AL0JBgPP1Mx32p7wA14" class="btn-order" target="_blank" rel="noopener noreferrer">Order &amp; Pay</a>
+        </div>
+      </div>
+
+      <div class="supp-card reveal" data-brand="pharma-nord">
+        <div class="supp-img-wrap">
+          <img src="https://files.stripe.com/links/MDB8YWNjdF8xVGxDa2cwZTZaMDE0RG5qfGZsX2xpdmVfQmd6Rml0NGFPSEZJSnBXY1hEY25DZlgw00oTQ3Qlfj" alt="Bio - Curcumin">
+          <div class="supp-desc-overlay">
+            <div class="supp-desc">Curcumin tablets are derived from turmeric, with 400mg of curcuma extract in each capsule. Curcuminoid isn’t easily absorbed by the body, therefore you must choose one with high bioavailability. Turmeric tablets have many anti-inflammatory benefits for a reduction in joint pain, increased mobility, and flexibility.</div>
+          </div>
+        </div>
+        <div class="supp-name">Bio - Curcumin</div>
+        <div class="supp-meta">
+          <div class="supp-price">£25.50 <span>/ 50 caps</span></div>
+          <a href="https://buy.stripe.com/5kQ7sD3VNdDDaj36eB7wA15" class="btn-order" target="_blank" rel="noopener noreferrer">Order &amp; Pay</a>
+        </div>
+      </div>
+
+      <div class="supp-card reveal" data-brand="viridian">
+        <div class="supp-img-wrap">
+          <img src="https://files.stripe.com/links/MDB8YWNjdF8xVGxDa2cwZTZaMDE0RG5qfGZsX2xpdmVfRGxGOFd5bVRrWW1VMG9LNGlTTHBVN0Ra00i9Ichn1I" alt="High Five Multivitamin Formula">
+          <div class="supp-desc-overlay">
+            <div class="supp-desc">High Five Multivitamin is a specific blend of supportive nutrients, high in vitamin B5 which contributes to normal energy-yielding metabolism. This one-a-day best selling multivitamin features 23 vitamins, minerals and plant extracts to support optimal nutrient status. 100% active ingredients formulated by expert nutritionists</div>
+          </div>
+        </div>
+        <div class="supp-name">High Five Multivitamin Formula</div>
+        <div class="supp-meta">
+          <div class="supp-price">£27.60 <span>/ 90 caps</span></div>
+          <a href="https://buy.stripe.com/5kQ5kv8c38jj9eZ46t7wA16" class="btn-order" target="_blank" rel="noopener noreferrer">Order &amp; Pay</a>
+        </div>
+      </div>
+
+      <div class="supp-card reveal" data-brand="viridian">
+        <div class="supp-img-wrap">
+          <img src="https://files.stripe.com/links/MDB8YWNjdF8xVGxDa2cwZTZaMDE0RG5qfGZsX2xpdmVfU3BZd0VtQTM0TENMdXVJSWpLT2xFbERx00YsGGt8A2" alt="High Five Multivitamin Formula">
+          <div class="supp-desc-overlay">
+            <div class="supp-desc">High Five Multivitamin is a specific blend of supportive nutrients, high in vitamin B5 which contributes to normal energy-yielding metabolism. This one-a-day best selling multivitamin features 23 vitamins, minerals and plant extracts to support optimal nutrient status. 100% active ingredients formulated by expert nutritionists.</div>
+          </div>
+        </div>
+        <div class="supp-name">High Five Multivitamin Formula</div>
+        <div class="supp-meta">
+          <div class="supp-price">£19.50 <span>/ 60 caps</span></div>
+          <a href="https://buy.stripe.com/9B6aEP8c3czzgHrauR7wA17" class="btn-order" target="_blank" rel="noopener noreferrer">Order &amp; Pay</a>
+        </div>
+      </div>
+
+      <div class="supp-card reveal" data-brand="viridian">
+        <div class="supp-img-wrap">
+          <img src="https://files.stripe.com/links/MDB8YWNjdF8xVGxDa2cwZTZaMDE0RG5qfGZsX2xpdmVfOFdlalQ0SThTZmFHakd4NHI2dWg3R1VM00ipQERXvv" alt="High Five Multivitamin Formula">
+          <div class="supp-desc-overlay">
+            <div class="supp-desc">High Five Multivitamin is a specific blend of supportive nutrients, high in vitamin B5 which contributes to normal energy-yielding metabolism. This one-a-day best selling multivitamin features 23 vitamins, minerals and plant extracts to support optimal nutrient status. 100% active ingredients formulated by expert nutritionists</div>
+          </div>
+        </div>
+        <div class="supp-name">High Five Multivitamin Formula</div>
+        <div class="supp-meta">
+          <div class="supp-price">£11.15 <span>/ 30 caps</span></div>
+          <a href="https://buy.stripe.com/00w28j8c32YZ76RgTf7wA18" class="btn-order" target="_blank" rel="noopener noreferrer">Order &amp; Pay</a>
+        </div>
+      </div>
+
+      <div class="supp-card reveal" data-brand="viridian">
+        <div class="supp-img-wrap">
+          <img src="https://files.stripe.com/links/MDB8YWNjdF8xVGxDa2cwZTZaMDE0RG5qfGZsX2xpdmVfbHFrQVJabjR3RDQ3dmFSZlBValZ4RXpu00Q1EtPb0Y" alt="Rainbow Trout Omega Oil Softgels">
+          <div class="supp-desc-overlay">
+            <div class="supp-desc">Rainbow Trout Omega Oil Softgels provide a complete omega oil. Our alternative to cod liver oil is produced sustainably at source using a gentle process to create a fresh non-oxidised oil with purity and high nutritional quality. Ethically sourced from Scandinavian inland waters ensuring complete environmental control, zero waste and low carbon footprint. 100% active ingredients formulated by expert nutritionists. Suitable for children. {Viridian}</div>
+          </div>
+        </div>
+        <div class="supp-name">Rainbow Trout Omega Oil Softgels</div>
+        <div class="supp-meta">
+          <div class="supp-price">£25.20 <span>/ 90 caps</span></div>
+          <a href="https://buy.stripe.com/cNi4gr1NF2YZ0It9qN7wA19" class="btn-order" target="_blank" rel="noopener noreferrer">Order &amp; Pay</a>
+        </div>
+      </div>
+
+      <div class="supp-card reveal" data-brand="viridian">
+        <div class="supp-img-wrap">
+          <img src="https://files.stripe.com/links/MDB8YWNjdF8xVGxDa2cwZTZaMDE0RG5qfGZsX2xpdmVfSDl3ZmthU1VTd05VcW9RUnVwTW0zd0Fx00qpYj1OPQ" alt="Folic Acid">
+          <div class="supp-desc-overlay">
+            <div class="supp-desc">Folic Acid contains 400μg of this key vitamin. Also known as vitamin B9, it is ideal to take before and during pregnancy. 100% active ingredients formulated by expert nutritionists with no artificial fillers and no nasties. {Viridian}</div>
+          </div>
+        </div>
+        <div class="supp-name">Folic Acid</div>
+        <div class="supp-meta">
+          <div class="supp-price">£14.50 <span>/ Folic Acid</span></div>
+          <a href="https://buy.stripe.com/5kQ7sD2RJ6bb62NeL77wA1a" class="btn-order" target="_blank" rel="noopener noreferrer">Order &amp; Pay</a>
+        </div>
+      </div>
+
+      <div class="supp-card reveal" data-brand="viridian">
+        <div class="supp-img-wrap">
+          <img src="https://files.stripe.com/links/MDB8YWNjdF8xVGxDa2cwZTZaMDE0RG5qfGZsX2xpdmVfYTVTRUdEOXpyWWJYenhIMkhyNW1vS2dW00fbjDvhqr" alt="Extra C 550 mg">
+          <div class="supp-desc-overlay">
+            <div class="supp-desc">Extra C 550mg contains a patented form of vitamin C, which delivers enhanced absorption and retention. Naturally derived from corn with the addition of fatty acids to enhance bioavailability. 100% active ingredients formulated by expert nutritionists. {Viridian}</div>
+          </div>
+        </div>
+        <div class="supp-name">Extra C 550 mg</div>
+        <div class="supp-meta">
+          <div class="supp-price">£22.50 <span>/ 90 caps</span></div>
+          <a href="https://buy.stripe.com/28E28jcsj0QRdvf1Yl7wA1b" class="btn-order" target="_blank" rel="noopener noreferrer">Order &amp; Pay</a>
+        </div>
+      </div>
+
+      <div class="supp-card reveal" data-brand="viridian">
+        <div class="supp-img-wrap">
+          <img src="https://files.stripe.com/links/MDB8YWNjdF8xVGxDa2cwZTZaMDE0RG5qfGZsX2xpdmVfVkNTT2lKTFlwZXNLSDFXT0Z6V0cydk1n00oeGSu360" alt="Extra C 550 mg">
+          <div class="supp-desc-overlay">
+            <div class="supp-desc">Extra C 550mg contains a patented form of vitamin C, which delivers enhanced absorption and retention. Naturally derived from corn with the addition of fatty acids to enhance bioavailability. 100% active ingredients formulated by expert nutritionists. {Viridian}</div>
+          </div>
+        </div>
+        <div class="supp-name">Extra C 550 mg</div>
+        <div class="supp-meta">
+          <div class="supp-price">£8.20 <span>/ 30 caps</span></div>
+          <a href="https://buy.stripe.com/8x200bdwn6bb3UF5ax7wA1c" class="btn-order" target="_blank" rel="noopener noreferrer">Order &amp; Pay</a>
+        </div>
+      </div>
+
+      <div class="supp-card reveal" data-brand="viridian">
+        <div class="supp-img-wrap">
+          <img src="https://files.stripe.com/links/MDB8YWNjdF8xVGxDa2cwZTZaMDE0RG5qfGZsX2xpdmVfbTRkZ2JVc3VwNjlUSzNpYzNKTGZCMU0x004BID6fHB" alt="Cranberry & Mannose">
+          <div class="supp-desc-overlay">
+            <div class="supp-desc">Cranberry Mannose is an alkalizing blend of mannose and high-potency cranberry extract. 100% active ingredients formulated by expert nutritionists. {Viridian}</div>
+          </div>
+        </div>
+        <div class="supp-name">Cranberry & Mannose</div>
+        <div class="supp-meta">
+          <div class="supp-price">£29.95 <span>/ 30 caps</span></div>
+          <a href="https://buy.stripe.com/28E3cn0JB6bb3UF0Uh7wA1d" class="btn-order" target="_blank" rel="noopener noreferrer">Order &amp; Pay</a>
+        </div>
+      </div>
+
+      <div class="supp-card reveal" data-brand="viridian">
+        <div class="supp-img-wrap">
+          <img src="https://files.stripe.com/links/MDB8YWNjdF8xVGxDa2cwZTZaMDE0RG5qfGZsX2xpdmVfQW5ldHJ2ZFlmalpkZHd5cHFKSWxZajVi00kj4norpx" alt="Cognitive Complex">
+          <div class="supp-desc-overlay">
+            <div class="supp-desc">Cognitive Complex is an advanced formulation of six neuro-protective nutrients. Includes zinc which contributes to normal cognitive function. 100% active ingredients formulated by expert nutritionists. {Viridian}</div>
+          </div>
+        </div>
+        <div class="supp-name">Cognitive Complex</div>
+        <div class="supp-meta">
+          <div class="supp-price">£39.95 <span>/ 60 caps</span></div>
+          <a href="https://buy.stripe.com/fZu28jdwn433dvfauR7wA1e" class="btn-order" target="_blank" rel="noopener noreferrer">Order &amp; Pay</a>
+        </div>
+      </div>
+
+      <div class="supp-card reveal" data-brand="viridian">
+        <div class="supp-img-wrap">
+          <img src="https://files.stripe.com/links/MDB8YWNjdF8xVGxDa2cwZTZaMDE0RG5qfGZsX2xpdmVfOHdUV2xwdUNnYnlBdzhiRDNMVmVTSDc300Eles2yS5" alt="Calcium, Magnesium & Zinc Powder">
+          <div class="supp-desc-overlay">
+            <div class="supp-desc">Calcium Magnesium & Zinc powder is a highly absorbable, synergistic balance of key nutrients in a powder format for flexible dosage. Supporting many body functions the formula also includes vitamin C and malic acid for optimum absorption and utilisation.100% active ingredients formulated by expert nutritionists. {Viridian}</div>
+          </div>
+        </div>
+        <div class="supp-name">Calcium, Magnesium & Zinc Powder</div>
+        <div class="supp-meta">
+          <div class="supp-price">£12.75 <span>/ 100g</span></div>
+          <a href="https://buy.stripe.com/00w5kvcsjdDDezj46t7wA1f" class="btn-order" target="_blank" rel="noopener noreferrer">Order &amp; Pay</a>
+        </div>
+      </div>
+
+      <div class="supp-card reveal" data-brand="viridian">
+        <div class="supp-img-wrap">
+          <img src="https://files.stripe.com/links/MDB8YWNjdF8xVGxDa2cwZTZaMDE0RG5qfGZsX2xpdmVfeHc5SlZBdFpYZ0Vzc3VoT1llUDFkQzZ400EYldyjcH" alt="Biotin 2500ug">
+          <div class="supp-desc-overlay">
+            <div class="supp-desc">Biotin is the beauty B vitamin that nourishes from within, contributing to the maintenance of normal hair and skin. This one-a-day supplement provides an optimal therapeutic dose. 100% active ingredients formulated by expert nutritionists. {Viridian}</div>
+          </div>
+        </div>
+        <div class="supp-name">Biotin 2500ug</div>
+        <div class="supp-meta">
+          <div class="supp-price">£16.25 <span>/ 90 caps</span></div>
+          <a href="https://buy.stripe.com/00w28j9g75773UF0Uh7wA1g" class="btn-order" target="_blank" rel="noopener noreferrer">Order &amp; Pay</a>
+        </div>
+      </div>
+
+      <div class="supp-card reveal" data-brand="viridian">
+        <div class="supp-img-wrap">
+          <img src="https://files.stripe.com/links/MDB8YWNjdF8xVGxDa2cwZTZaMDE0RG5qfGZsX2xpdmVfVjhDcEhpMlJENGpLVTFqZ1l1NEdJdHl100nmiyyBGk" alt="Balanced Zinc Complex">
+          <div class="supp-desc-overlay">
+            <div class="supp-desc">Balanced Zinc Complex provides immune support as a highly absorbable formula. Includes copper for optimum absorption. Zinc supports a normal immune system and aids in the maintenance of bones, vision, skin, nails and hair. 100% active ingredients formulated by expert nutritionists.</div>
+          </div>
+        </div>
+        <div class="supp-name">Balanced Zinc Complex</div>
+        <div class="supp-meta">
+          <div class="supp-price">£21.95 <span>/ 90 caps</span></div>
+          <a href="https://buy.stripe.com/28E28j8c3577fDn46t7wA1h" class="btn-order" target="_blank" rel="noopener noreferrer">Order &amp; Pay</a>
+        </div>
+      </div>
+
+      <div class="supp-card reveal" data-brand="viridian">
+        <div class="supp-img-wrap">
+          <img src="https://files.stripe.com/links/MDB8YWNjdF8xVGxDa2cwZTZaMDE0RG5qfGZsX2xpdmVfSFdZTVZwc0lSMHpBR2doREhMTldnblNX00cDgEzlqV" alt="Balanced Zinc Complex">
+          <div class="supp-desc-overlay">
+            <div class="supp-desc">Balanced Zinc Complex provides immune support as a highly absorbable formula. Includes copper for optimum absorption. Zinc supports a normal immune system and aids in the maintenance of bones, vision, skin, nails and hair. 100% active ingredients formulated by expert nutritionists.</div>
+          </div>
+        </div>
+        <div class="supp-name">Balanced Zinc Complex</div>
+        <div class="supp-meta">
+          <div class="supp-price">£9.50 <span>/ 30 caps</span></div>
+          <a href="https://buy.stripe.com/dRm6ozbof1UV3UFfPb7wA1i" class="btn-order" target="_blank" rel="noopener noreferrer">Order &amp; Pay</a>
+        </div>
+      </div>
+
+      <div class="supp-card reveal" data-brand="viridian">
+        <div class="supp-img-wrap">
+          <img src="https://files.stripe.com/links/MDB8YWNjdF8xVGxDa2cwZTZaMDE0RG5qfGZsX2xpdmVfOFRXOHFwUG51a2p6SllrckRsdWdIVlU000WRTQGUzU" alt="Balanced Iron Complex">
+          <div class="supp-desc-overlay">
+            <div class="supp-desc">Balanced Iron Complex contains iron bisglycinate which is gentle on the digestive system. Synergistic factors including Vitamin C enhance iron absorption and aid in the maintenance of the immune system. Iron contributes to the reduction of tiredness and fatigue and contributes to normal cognitive function. 100% active ingredients formulated by expert nutritionists.</div>
+          </div>
+        </div>
+        <div class="supp-name">Balanced Iron Complex</div>
+        <div class="supp-meta">
+          <div class="supp-price">£18.95 <span>/ 90 caps</span></div>
+          <a href="https://buy.stripe.com/aFa28jdwn5773UF1Yl7wA1j" class="btn-order" target="_blank" rel="noopener noreferrer">Order &amp; Pay</a>
+        </div>
+      </div>
+
+      <div class="supp-card reveal" data-brand="viridian">
+        <div class="supp-img-wrap">
+          <img src="https://files.stripe.com/links/MDB8YWNjdF8xVGxDa2cwZTZaMDE0RG5qfGZsX2xpdmVfTzhvZkFjaFk2Q2tIY1I0M0xlM1NhTUp000dyLg5IkB" alt="Balanced Iron Complex">
+          <div class="supp-desc-overlay">
+            <div class="supp-desc">Balanced Iron Complex contains iron bisglycinate which is gentle on the digestive system. Synergistic factors including Vitamin C enhance iron absorption and aid in the maintenance of the immune system. Iron contributes to the reduction of tiredness and fatigue and contributes to normal cognitive function. 100% active ingredients formulated by expert nutritionists.</div>
+          </div>
+        </div>
+        <div class="supp-name">Balanced Iron Complex</div>
+        <div class="supp-meta">
+          <div class="supp-price">£8.50 <span>/ 30 caps</span></div>
+          <a href="https://buy.stripe.com/6oU6oz0JBdDD4YJdH37wA1k" class="btn-order" target="_blank" rel="noopener noreferrer">Order &amp; Pay</a>
+        </div>
+      </div>
+
+      <div class="supp-no-results" id="supp-no-results">No products found — try a different search or browse all brands.</div>
+    </div>
+
+    <!-- Can't find what you need -->
+    <div class="custom-order-box reveal">
+      <h3>Can't see what you're looking for?</h3>
+      <p>We stock a wide range of premium supplement brands in store and can order almost anything. Give us a call or drop us an email and we'll source it for you.</p>
+      <div class="products-contact-links">
+        <a href="tel:07506882088" class="contact-link">
+          <span>📞</span>
+          <div>07506 882 088</div>
+        </a>
+        <a href="mailto:contact@reignlakes.co.uk" class="contact-link">
+          <span>✉️</span>
+          <div>contact@reignlakes.co.uk</div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── FOOTER ─── -->
+  <footer>
+    <div class="footer-top">
+      <div class="footer-brand">
+        <span class="footer-logo" style="display:flex; flex-direction:column; line-height:1.2;">
+          <span>Lavender <span>Lakes</span></span>
+          <span style="font-size:1.1rem; letter-spacing:0.18em; color:var(--gold); font-style:italic; font-weight:300;">@ Reign Wellness Store</span>
+        </span>
+        <p>Artisan honeys, organic foods, ceremonial matcha, premium supplements and weekly meditation — all in one mindful space.</p>
+        <div class="social-links">
+          <a href="https://www.instagram.com/reign_windermere/" class="social-link" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          </a>
+          <a href="#" class="social-link" aria-label="X (Twitter)">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>Supplements</h5>
+        <ul>
+          <li><a href="#">Vitamin D3 + K2</a></li>
+          <li><a href="#">Omega-3 Fish Oil</a></li>
+          <li><a href="#">Magnesium Glycinate</a></li>
+          <li><a href="#">Ashwagandha KSM-66</a></li>
+          <li><a href="#">Advanced Probiotic</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Store</h5>
+        <ul>
+          <li><a href="index.html#order">All Products</a></li>
+          <li><a href="index.html#meditation">Meditation Evenings</a></li>
+          <li><a href="index.html#contact">Find Us</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Our Hours</h5>
+        <ul>
+          <li><a href="#">Mon: 10am – 5pm</a></li>
+          <li><a href="#">Tue: 10am – 5pm</a></li>
+          <li><a href="#">Wed: 10am – 5pm</a></li>
+          <li><a href="#">Thu: 10am – 5pm</a></li>
+          <li><a href="#">Fri: 10am – 5pm</a></li>
+          <li><a href="#">Sat: 10am – 3pm</a></li>
+          <li><a href="#">Sun: Closed</a></li>
+          <li><a href="index.html#meditation">Meditation: Mon 5pm</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2024 Lavender Lakes. All rights reserved.</span>
+      <span>Organic Foods · Local Products · Honeys · Matcha Drinks</span>
+      <span>
+        <a href="#">Privacy Policy</a> &nbsp;·&nbsp; <a href="#">Terms</a>
+      </span>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    // Store original text on load
+    document.querySelectorAll('.supp-card').forEach(card => {
+      card.querySelector('.supp-name').dataset.orig = card.querySelector('.supp-name').textContent;
+      card.querySelector('.supp-desc').dataset.orig = card.querySelector('.supp-desc').textContent;
+    });
+
+    let activeFilter = 'all';
+
+    function escapeRegex(str) {
+      return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    }
+
+    function highlightText(original, query) {
+      if (!query) return original;
+      const regex = new RegExp('(' + escapeRegex(query) + ')', 'gi');
+      return original.replace(regex, '<span class="supp-highlight">$1</span>');
+    }
+
+    function applyFilters() {
+      const query = document.getElementById('supp-search').value.trim().toLowerCase();
+      const cards = document.querySelectorAll('.supp-card');
+      let visibleCount = 0;
+
+      cards.forEach(card => {
+        const nameEl = card.querySelector('.supp-name');
+        const descEl = card.querySelector('.supp-desc');
+        const origName = nameEl.dataset.orig;
+        const origDesc = descEl.dataset.orig;
+        const brand = card.dataset.brand || '';
+
+        const matchesBrand = activeFilter === 'all' || brand === activeFilter;
+        const matchesSearch = !query || origName.toLowerCase().includes(query) || origDesc.toLowerCase().includes(query);
+        const visible = matchesBrand && matchesSearch;
+
+        card.classList.toggle('hidden', !visible);
+
+        // Apply or clear highlights
+        nameEl.innerHTML = visible && query ? highlightText(origName, query) : origName;
+        descEl.innerHTML = visible && query ? highlightText(origDesc, query) : origDesc;
+
+        if (visible) visibleCount++;
+      });
+
+      document.getElementById('supp-no-results').style.display = visibleCount === 0 ? 'block' : 'none';
+    }
+
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        activeFilter = btn.dataset.filter;
+        applyFilters();
+      });
+    });
+
+    document.getElementById('supp-search').addEventListener('input', applyFilters);
+  </script>
+  <script>
+    // Mark active nav link
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      if (link.href === window.location.href) {
+        link.classList.add('active');
+      }
+    });
+  </script>
+</body>
+</html>

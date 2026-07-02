@@ -87,6 +87,14 @@ nav.scrolled {
 }
 .nav-cta::after { display: none !important; }
 .nav-cta:hover { background: var(--lavender) !important; color: white !important; }
+.nav-collect {
+  background: var(--gold) !important;
+  color: white !important;
+  padding: 0.6rem 1.4rem !important;
+  letter-spacing: 0.12em !important;
+}
+.nav-collect::after { display: none !important; }
+.nav-collect:hover { background: #b8904f !important; color: white !important; }
 
 /* Hamburger */
 .hamburger {
