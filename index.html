@@ -49,6 +49,23 @@
 
   <!-- ─── HERO ─── -->
   <section id="hero">
+    <!-- Therapies notice (dismissible) -->
+    <div class="hero-notice" id="heroNotice" role="status">
+      <button type="button" class="hero-notice-close" aria-label="Close notice">&times;</button>
+      <p class="hero-notice-label">Please note</p>
+      <p class="hero-notice-text">The shop may occasionally close from 3&nbsp;PM on opening days while a therapy session is taking place. If you're planning to visit after 3&nbsp;PM, please give us a call first to check we're open.</p>
+      <a href="tel:07506882088" class="hero-notice-call">Call 07506 882 088</a>
+    </div>
+    <script>
+      (function () {
+        var notice = document.getElementById('heroNotice');
+        try { if (sessionStorage.getItem('heroNoticeClosed')) notice.hidden = true; } catch (e) {}
+        notice.querySelector('.hero-notice-close').addEventListener('click', function () {
+          notice.hidden = true;
+          try { sessionStorage.setItem('heroNoticeClosed', '1'); } catch (e) {}
+        });
+      })();
+    </script>
     <div class="hero-left">
       <div class="hero-eyebrow">
         <span>Organic Foods · Premium Supplements · Local Products · Honeys</span>
@@ -567,7 +584,7 @@
         <h5>Our Hours</h5>
         <ul>
           <li><a href="#">Mon: 10am – 5pm</a></li>
-          <li><a href="#">Tue: 10am – 5pm</a></li>
+          <li><a href="#">Tue: Closed</a></li>
           <li><a href="#">Wed: 10am – 5pm</a></li>
           <li><a href="#">Thu: 10am – 5pm</a></li>
           <li><a href="#">Fri: 10am – 5pm</a></li>
