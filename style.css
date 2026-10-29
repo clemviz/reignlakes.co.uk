@@ -742,7 +742,7 @@ nav.scrolled {
 
 /* ─── CONTACT ─── */
 #contact {
-  background: var(--cream);
+  background: white;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 0;
