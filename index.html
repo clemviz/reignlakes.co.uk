@@ -4,8 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Reign Wellness Store | Holistic & Sound Therapies</title>
-  <meta name="description" content="Health store &amp; wellness centre in Windermere, Lake District. Organic food, raw honey, matcha, herbal teas &amp; supplements. Weekly meditation evenings." />
-  <meta name="keywords" content="organic food, raw honey, lavender honey, Manuka honey, local honey, ceremonial matcha, take-away matcha drinks, matcha to go, loose leaf tea, premium supplements, natural products, Windermere, Lake District, Lakes, meditation, lavender, matcha, teas, wellness store, health store, natural health store, Manuka Health Store, cacao drinks, hot chocolate" />
+  <meta name="description" content="Weekly and monthly group meditation, individual sound meditation sessions with tuning forks and crystal singing bowls, and EMF assessments in the Lake District." />
+  <meta name="keywords" content="meditation, group meditation, sound meditation, sound therapy, tuning forks, crystal singing bowls, EMF assessment, wellbeing, Lake District, Lakes, Windermere, Reign Wellness, Lavender Lakes" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
@@ -28,7 +28,6 @@
       <li><a href="#meditation">Meditation</a></li>
       <li><a href="#therapies">Chill Zone</a></li>
       <li><a href="#emf-assessment">EMF</a></li>
-      <!-- <li><a href="order.html" class="nav-collect">Click &amp; Collect</a></li> -->
       <li><a href="#contact" class="nav-cta">Contact</a></li>
     </ul>
     <button class="hamburger" id="hamburger" aria-label="Open menu">
@@ -41,29 +40,11 @@
     <a href="#meditation" class="mobile-link">Meditation</a>
     <a href="#therapies" class="mobile-link">Chill Zone</a>
     <a href="#emf-assessment" class="mobile-link">EMF</a>
-    <!-- <a href="order.html" class="mobile-link" style="color:var(--gold);">Click &amp; Collect</a> -->
     <a href="#contact" class="mobile-link mobile-cta">Get in Touch</a>
   </div>
 
   <!-- ─── HERO ─── -->
   <section id="hero">
-    <!-- Therapies notice (dismissible) -->
-    <div class="hero-notice" id="heroNotice" role="status">
-      <button type="button" class="hero-notice-close" aria-label="Close notice">&times;</button>
-      <p class="hero-notice-label">Please note</p>
-      <p class="hero-notice-text">The shop may occasionally close from 3&nbsp;PM on opening days while a therapy session is taking place. If you're planning to visit after 3&nbsp;PM, please give us a call first to check we're open.</p>
-      <a href="tel:07506882088" class="hero-notice-call">Call 07506 882 088</a>
-    </div>
-    <script>
-      (function () {
-        var notice = document.getElementById('heroNotice');
-        try { if (sessionStorage.getItem('heroNoticeClosed')) notice.hidden = true; } catch (e) {}
-        notice.querySelector('.hero-notice-close').addEventListener('click', function () {
-          notice.hidden = true;
-          try { sessionStorage.setItem('heroNoticeClosed', '1'); } catch (e) {}
-        });
-      })();
-    </script>
     <div class="hero-left">
       <h1 class="hero-title">
         Where sound and<br><em>meditation</em> meet
@@ -78,26 +59,8 @@
         <div class="scroll-line"></div>
       </div>
     </div>
-    <div class="hero-right" style="background: #d6cae8; position: relative; overflow: hidden; display:flex; align-items:center; justify-content:center;">
-
-      <!-- Interactive Map -->
-      <iframe src="map.html" style="width: 90%; height: 70%; border: none; border-radius: 12px; box-shadow: 0 20px 60px rgba(0,0,0,0.15);"></iframe>
-
-      <!-- Bottom address card -->
-      <div style="
-        position: absolute; bottom: 18%; left: 50%; transform: translateX(-50%);
-        background: rgba(250,247,242,0.97);
-        border: 1px solid #9b7db5;
-        padding: 0.85rem 1.8rem;
-        text-align: center;
-        white-space: nowrap;
-        box-shadow: 0 4px 20px rgba(62,36,85,0.18);
-        z-index: 10;
-      ">
-        <div style="font-family:'Cormorant Garamond',serif; font-size:1.05rem; color:#5e3d73; font-style:italic; letter-spacing:0.04em;">Reign Wellness Store</div>
-        <div style="font-size:0.68rem; letter-spacing:0.14em; text-transform:uppercase; color:#6b6360; margin-top:0.25rem;">44 Main Road · Windermere · LA23 1DX</div>
-      </div>
-
+    <div class="hero-right" style="background: #a07cb4; position: relative; overflow: hidden; display:flex; align-items:center; justify-content:center;">
+      <img src="img/reign_logo.jpeg" alt="Reign Wellness logo" style="width: 100%; height: 100%; object-fit: contain; display: block;">
     </div>
   </section>
 
@@ -322,13 +285,6 @@
             <a href="tel:07506882088">07506 882 088</a>
           </div>
         </div>
-        <div class="contact-detail">
-          <div class="detail-icon">📍</div>
-          <div>
-            <strong>Visit Us</strong>
-            Reign Wellness, 44 Main Road,<br>Windermere, Cumbria, LA23 1DX<br>Call us first before you visit: <a href="tel:07506882088">07506 882 088</a>
-          </div>
-        </div>
       </div>
     </div>
 
@@ -366,7 +322,6 @@
         <h5>Visit</h5>
         <ul>
           <li><a href="#meditation">Meditation Evenings</a></li>
-          <li><a href="#contact">Find Us</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
       </div>
